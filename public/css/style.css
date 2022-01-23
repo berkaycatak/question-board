@@ -1,0 +1,373 @@
+:root {
+}
+
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    background-image: url('../img/left-bg.png');
+}
+
+.left-context {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 80%;
+    width: 80%;
+    background-color: white;
+    border-radius: 30px;
+    background: rgba(0, 0, 0, 0.17);
+    backdrop-filter: blur(36px);
+}
+
+.lc-head {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-left: 3vw;
+    margin-top: 4vh;
+}
+
+.lc-head > img {
+    width: 5%;
+    min-width: 18px;
+}
+
+.lc-head > h2 {
+    margin-left: 0.6vw;
+    font-size: 0.8rem;
+    color: white;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.lc-context {
+    display: flex;
+    flex-direction: column;
+    margin: 6vh 0 0 3vw;
+}
+.lc-context > h1 {
+    color: white;
+    margin-bottom: 1vh;
+}
+
+.lc-context > h5 {
+    font-size: 1rem;
+    font-weight: 300;
+    color: white;
+}
+
+.lc-context > a {
+    margin-top: 2vh;
+}
+
+.lc-bottom {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3vh;
+}
+
+.lc-bottom > a {
+    padding: 0.2rem;
+    margin-left: 3vw;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.right-context {
+    width: 80%;
+    height: 50%;
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+    max-width: 400px;
+}
+
+.rc-context {
+    display: flex;
+    flex-direction: column;
+}
+
+.rc-head {
+    margin-bottom: 6vh;
+}
+
+.rc-head > h2 {
+    margin-left: 0.6vw;
+    font-size: 3rem;
+}
+
+.rc-context > form {
+    display: flex;
+    flex-direction: column;
+}
+
+.rc-context > form > label {
+    margin-bottom: 1vh;
+    font-size: 1.4rem;
+}
+
+.rc-context > form > input {
+    border: none;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.329);
+    padding-bottom: 0.5vw;
+    font-size: 1rem;
+    color: #CCC;
+}
+
+.rc-context > form > input:focus {
+    padding: 1vh;
+    color: black;
+}
+
+.rc-context-bottom {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.9vh;
+    text-align: center;
+}
+
+.rc-context-bottom > a {
+    display: inline-block;
+    color: rgba(0, 0, 0, 0.226);
+}
+
+.rc-context-bottom > a:hover {
+    color: rgba(0, 0, 0, 0.555);
+}
+
+.rc-context-bottom > a:first-child {
+    margin-bottom: 0.4vh;
+}
+
+.mb {
+    margin-bottom: 2vh;
+}
+
+.rc-context > form > input:nth-child(2) {
+    margin-bottom: 2vh;
+}
+
+.checkbox {
+    margin: 1vh 0 1vh 0;
+}
+
+.checkbox > span {
+    opacity: 0.3;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.rc-context > form > input[type=submit] {
+    margin-top: 4vh;
+    background-color: black;
+    border-radius: 30px;
+    height: 6vh;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.rc-context > form > input[type=submit]:hover {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    cursor: grab;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    /*padding: 2vh;*/
+    padding: 20px 40px 20px 40px;
+    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.h-brand {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.h-brand > img {
+    width: 100%;
+    max-width: 2.8vh;
+    margin-right: 0.8vw;
+}
+
+.h-brand > h3 {
+    font-size: 1.4rem;
+}
+
+.h-nav > a {
+    color: black;
+}
+
+
+.form-success-top {
+    margin-bottom: 15px;
+    background: linear-gradient(45deg, #1fd282, #4be6a6);
+    color: white;
+    padding: 13px;
+    box-shadow: 0 0 12px 0 rgb(0 0 0 / 6%);
+    border-radius: 4px;
+}
+
+.form-error-top{
+    margin-bottom: 15px;
+    background: linear-gradient(45deg, #e64b76, #f32424);
+    color: white;
+    padding: 13px;
+    box-shadow: 0 0 12px 0 rgb(0 0 0 / 6%);
+    border-radius: 4px;
+}
+
+.form-info-top {
+    margin-bottom: 15px;
+    background: #c9eeff2e;
+    color: black;
+    padding: 13px;
+}
+
+/*
+NAVBAR
+ */
+.nav {
+    width: 100%;
+    background-color: white;
+    padding: 20px 40px 20px 40px;
+    box-shadow: 0px 4px 30px rgb(0 0 0 / 10%);
+    position: relative;
+}
+
+.nav > .nav-header {
+    display: inline;
+}
+
+.nav > .nav-header > .nav-title {
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 22px;
+    color: black;
+    padding: 10px 10px 10px 10px;
+}
+
+.nav > .nav-btn {
+    display: none;
+}
+
+.nav > .nav-links {
+    display: inline;
+    float: right;
+    font-size: 18px;
+}
+
+.nav > .nav-links > a {
+    display: inline-block;
+    padding: 13px 10px 13px 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.nav > .nav-links > a:hover {
+    background-color: rgb(231 231 231 / 30%);
+}
+
+.nav > #nav-check {
+    display: none;
+}
+
+img.h-brand-img {
+    height: 30px;
+    margin-right: 10px;
+}
+
+@media (max-width:600px) {
+    .nav{
+        padding: 0px;
+        padding-left: 10px;
+    }
+    .nav > .nav-btn {
+        display: inline-block;
+        position: absolute;
+        right: 0px;
+        top: 0px;
+    }
+    .nav > .nav-btn > label {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        padding: 13px;
+    }
+    .nav > .nav-btn > label:hover,.nav  #nav-check:checked ~ .nav-btn > label {
+        background-color: rgb(183 183 183 / 30%);
+    }
+    .nav > .nav-btn > label > span {
+        display: block;
+        width: 25px;
+        height: 10px;
+        border-top: 2px solid black;
+    }
+    .nav > .nav-links {
+        position: absolute;
+        display: block;
+        width: 100%;
+        background-color: white;
+        height: 0px;
+        transition: all 0.3s ease-in;
+        overflow-y: hidden;
+        top: 50px;
+        left: 0px;
+    }
+    .nav > .nav-links > a {
+        display: block;
+        width: 100%;
+    }
+    .nav > #nav-check:not(:checked) ~ .nav-links {
+        height: 0px;
+    }
+    .nav > #nav-check:checked ~ .nav-links {
+        height: calc(65vh - 50px);
+        overflow-y: auto;
+        box-shadow: 0px 4px 30px rgb(0 0 0 / 10%);
+    }
+}
+/*
+NAVBAR END
+ */
+
+/* FOOTER  */
+/* FOOTER  END */
