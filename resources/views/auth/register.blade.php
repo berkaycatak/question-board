@@ -1,6 +1,20 @@
 <x-app-layout>
-
     <x-slot name="header"></x-slot>
+    <style>main{ flex-direction: row!important; }
+
+        @media (max-width:820px) {
+            main{
+                flex-direction: column-reverse!important;
+            }
+
+            .right-context{
+                max-width: inherit;
+            }
+
+            .left{ display: none; }
+
+        }
+    </style>
 
 
 
@@ -24,10 +38,6 @@
                     <label for="password">Şifre</label>
                     <input class="mb" required type="password" name="password" required autocomplete="new-password" id="password" placeholder="Şifrenizi girin">
                     <input class="mb" required id="password_confirmation"  type="password" name="password_confirmation" required autocomplete="new-password" placeholder="Şifrenizi doğrulayın">
-                    <div class="checkbox">
-                        <input type="checkbox">
-                        <span>Şifremi göster</span>
-                    </div>
 
                     @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                         <div class="mt-4">

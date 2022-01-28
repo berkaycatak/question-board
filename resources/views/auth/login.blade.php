@@ -1,4 +1,19 @@
 <x-app-layout>
+    <style>main{ flex-direction: row!important; }
+
+        @media (max-width:820px) {
+            main{
+                flex-direction: column-reverse!important;
+            }
+            .right-context{
+                max-width: inherit;
+            }
+
+            .right{ border-radius: inherit; background: none; }
+            .left{ display: none; border-radius: inherit; }
+
+        }
+    </style>
     <div class="left">
         @include('layouts.components.about')
     </div>
@@ -22,10 +37,6 @@
                     <input required type="email" id="email" name="email" value="{{ old("email") }}" placeholder="E-Posta adresinizi girin">
                     <label for="password">Şifre</label>
                     <input required type="password" name="password" placeholder="Şifrenizi girin">
-                    <div class="checkbox">
-                        <input type="checkbox">
-                        <span>Şifremi göster</span>
-                    </div>
                     <input type="submit" value="Giriş yap">
                     <div class="rc-context-bottom">
                         <a href="{{ route('password.request') }}">Şifrenizi mi unuttunuz?</a>

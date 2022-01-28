@@ -1,8 +1,10 @@
 :root {
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 body {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Poppins';
     margin: 0;
     padding: 0;
 }
@@ -19,13 +21,56 @@ main {
     height: 100vh;
 }
 
+footer {
+    display: flex;
+    background: linear-gradient(0deg, #ff980061, transparent);
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    padding: 45px 30px 30px 30px;
+}
+
+footer a img {
+    height: 19px;
+    margin-right: 10px;
+    margin-top: 3px;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    background: #f3f3f3;
+    border-start-end-radius: 20px;
+    border-end-end-radius: 20px;
+
+}
+
+.right-context {
+    width: 93%;
+    height: 90%;
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+    max-width: 400px;
+    justify-content: center;
+}
+
 .left {
     display: flex;
     align-items: center;
     justify-content: center;
     flex: 1;
-    background-image: url('../img/left-bg.png');
+    background: #1fd282;
+    border-start-start-radius: 20px;
+    border-end-start-radius: 20px;
+    /*background-image: url('../img/left-bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    */
 }
+
 
 .left-context {
     display: flex;
@@ -71,7 +116,7 @@ main {
 }
 
 .lc-context > h5 {
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 300;
     color: white;
 }
@@ -89,23 +134,10 @@ main {
 .lc-bottom > a {
     padding: 0.2rem;
     margin-left: 3vw;
+    color: white;
 }
 
-.right {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-}
 
-.right-context {
-    width: 80%;
-    height: 50%;
-    display: flex;
-    align-items: left;
-    flex-direction: column;
-    max-width: 400px;
-}
 
 .rc-context {
     display: flex;
@@ -117,8 +149,7 @@ main {
 }
 
 .rc-head > h2 {
-    margin-left: 0.6vw;
-    font-size: 3rem;
+    font-size: 2.3rem;
 }
 
 .rc-context > form {
@@ -128,7 +159,7 @@ main {
 
 .rc-context > form > label {
     margin-bottom: 1vh;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
 }
 
 .rc-context > form > input {
@@ -138,6 +169,23 @@ main {
     font-size: 1rem;
     color: #CCC;
 }
+
+
+textarea {
+    margin-top: 2vh!important;
+    border: none!important;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.329)!important;
+    padding-bottom: 0.5vw!important;
+    font-size: 1rem!important;
+}
+
+textarea:focus {
+    border: none!important;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.329)!important;
+    box-shadow: none!important;
+}
+
+
 
 .rc-context > form > input:focus {
     padding: 1vh;
@@ -180,14 +228,19 @@ main {
     opacity: 0.3;
 }
 
+.checkbox > label {
+    opacity: 0.3;
+}
+
 a {
     text-decoration: none;
     color: white;
 }
 
+.dropdown span a:hover
 a:hover {
     text-decoration: none;
-    color: white;
+    color: black;
 }
 
 .rc-context > form > input[type=submit] {
@@ -195,7 +248,7 @@ a:hover {
     background-color: black;
     border-radius: 30px;
     height: 6vh;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: white;
 }
 
@@ -229,7 +282,7 @@ header {
 }
 
 .h-brand > h3 {
-    font-size: 1.4rem;
+    font-size: 1.0rem;
 }
 
 .h-nav > a {
@@ -369,5 +422,54 @@ img.h-brand-img {
 NAVBAR END
  */
 
-/* FOOTER  */
-/* FOOTER  END */
+
+/* LANDING  */
+.landing-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    min-height: 500px;
+    justify-content: center;
+}
+.landing-page h1 {
+    font-size: 45px;
+}
+.landing-page h3 {
+    font-size: 20px;
+}
+.landing-buttons {
+    margin-top: 10px;
+}
+.landing-buttons .green-button {
+    background: #61cf66;
+    color: white;
+    padding: 9px;
+    border-radius: 6px;
+}
+.landing-buttons .blue-button {
+    background: #52abf1;
+    color: white;
+    padding: 9px;
+    border-radius: 6px;
+}
+/* LANDING END */
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}

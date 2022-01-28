@@ -7,7 +7,6 @@
         <div class="lc-context">
             <h1>Soru Sor</h1>
             <h5>Soru oluşturabilir, cevaplayabilir ve sorularınızı düzenleyebilirsiniz.</h5>
-            <a href="#" target="_blank">Giriş yapmadan soru sor</a>
         </div>
     </div>
     <div class="lc-bottom">

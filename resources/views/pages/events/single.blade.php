@@ -31,38 +31,38 @@
                     @endif
                 @endif
             </div>
-
         </div>
-        <div class="main-content">
+            <form class="mcr-content add-question-form" method="POST" action="{{ route('question_store', $event->id) }}">
+                @csrf
+                <label for="addquestion">💬 Soru Ekle</label>
+                <textarea required name="question" id="addquestion" rows="1"></textarea>
+
+            @if(isset(Auth::user()->id))
+                    <div class="checkbox">
+                        <input id="anonim" name="anonim" type="checkbox">
+                        <label for="anonim">İsmim görünmesin</label>
+                    </div>
+                @else
+                    <a href="{{ route('register') }}" style="color: black; margin-top: 10px;">Kayıt olarak isimli sor.</a>
+                @endif
+                <input type="submit" value="Gönder">
+            </form>
+
+            <label class="questions-title">🤔 Sorular</label>
+            <div class="main-content">
                 <div class="questions">
                     @if(count($questions) > 0)
                         @php($counter = 0)
                         @foreach($questions as $question)
-                            @if($counter % 6 == 0)
-                                <div class="mc-item">
-                                    Soru sor
-                                </div>
-
-                            @endif
-
-
-                            <div class="mc-item"
-                                @if($question->is_answered)
-                                    style="background: #00b100; border-radius: 4px; padding: 7px;"
-                                @endif
-                            >
+                            <div class="mc-item @if($question->is_answered) is-answered @endif ">
                                 <div class="mci-head">
-                                    <span>{{ $question->is_answered ? '✅' : '💬'}}</span>
+                                    <span>{{ $question->is_answered ? '✅' : '💬'}} &nbsp;</span>
                                     @if($question->created_user_id != null && $question->is_anonim == 0)
                                         @php($sender_name = DB::table('users')->where('id', $question->created_user_id)->select('name')->first()->name)
                                     @else
                                         @php($sender_name = "anonim")
                                     @endif
-                                    <span
-                                    @if($question->is_answered)
-                                        style=" color: #ffffffe6!important; opacity: 1"
-                                    @endif
-                                    >{{ timeConvert($question->created_at) }} {{ $sender_name }} tarafından gönderildi.</span>
+                                    <span @if($question->is_answered) class="is-answered-text" @endif> {{ timeConvert($question->created_at) }} {{ $sender_name }} tarafından gönderildi.</span>
                                 </div>
                                 <div class="mci-context">
                                     <span
@@ -87,26 +87,11 @@
                                 @php($counter++)
                         @endforeach
                     @else
-                        Herhangi bir soru bulunamadı. İlk sen sor!
+                        <span class="no-question">
+                            Herhangi bir soru bulunamadı. İlk sen sor!
+                        </span>
                     @endif
                 </div>
             </div>
-            <div class="main-content-right">
-                <h2>Soru Ekle</h2>
-                <form class="mcr-content" method="POST" action="{{ route('question_store', $event->id) }}">
-                    @csrf
-                    <label for="addquestion">💬  Soru</label>
-                    <input type="text" name="question" value="{{ old('question') }}" placeholder="Sorunuzu girin:" >
-                        @if(isset(Auth::user()->id))
-                            <div class="checkbox">
-                                <input name="anonim" type="checkbox">
-                                <span>İsmim görünmesin</span>
-                            </div>
-                        @else
-                            <a href="{{ route('register') }}" style="color: black; margin-top: 10px;">Kayıt olarak isimli sor.</a>
-                        @endif
-                    <input type="submit" value="Gönder">
-                </form>
-            </div>
-        </div>
+     </div>
 </x-app-layout>

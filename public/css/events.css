@@ -1,5 +1,5 @@
 main {
-    padding: 3vw;
+    padding: 3vw 3vw 3vw 3vw;
     display: flex;
     flex-direction: column;
 }
@@ -9,7 +9,7 @@ main {
 }
 
 .main-header > h1 {
-    font-size: 3rem;
+    font-size: 2.6rem;
 }
 
 .main-header-a {
@@ -49,6 +49,7 @@ main {
 }
 
 .ecs-item-text {
+    margin-left: 5px;
     opacity: 0.6;
 }
 
@@ -91,6 +92,17 @@ hr {
     padding-top: 5px;
 }
 
+.add-question-form{
+    background: #F9F9F7;
+    padding: 20px 10px 20px 10px;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+}
+.questions-title{
+    font-size: 23px;
+    margin-top: 20px;
+}
+
 .mci-actions {
     margin-top: 0.4vh;
 }
@@ -109,6 +121,7 @@ hr {
     margin-top: 0.4vh;
     margin-bottom: 2vh;
      */
+    min-width: 300px!important;
     margin-top: 0.4vh;
     margin-bottom: 2vh;
     background: ghostwhite;
@@ -119,15 +132,22 @@ hr {
     width: 100%;
 }
 
+.no-question{
+    color: white;
+    background: #ff5722;
+    width: 100%!important;
+    padding: 20px;
+    border-radius: 6px;
+}
+
 .mci-head > span:nth-child(2){
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 }
 
 .mci-context {
-    margin-left: 26px;
+    padding: 0px 26px 26px 24px;
     display: flex;
     max-width: 600px;
-    padding-bottom: 2vh;
     /*
     border-bottom: 1px solid rgba(128, 128, 128, 0.082);
 
@@ -147,8 +167,7 @@ hr {
 }
 
 .mcr-content > label {
-    padding-top: 2vh;
-    font-size: 2rem;
+    font-size: 1.4rem;
 }
 
 .main-content-left {
@@ -162,11 +181,6 @@ hr {
     padding-left: 2vw;
 }
 
-.mcr-content {
-    display: flex;
-    max-width: 300px;
-    flex-direction: column;
-}
 
 .checkbox {
     display: flex;
@@ -186,7 +200,7 @@ form > input[type=text] {
     border: none;
     border-bottom: 1px solid rgba(128, 128, 128, 0.329);
     padding-bottom: 0.5vw;
-    font-size: 1rem;
+    font-size: 0.8rem;
     color: #CCC;
 }
 
@@ -196,7 +210,7 @@ form > input[type=submit] {
     border-radius: 30px;
     min-height: 40px;
     height: 4vh;
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: white;
 }
 
@@ -227,6 +241,23 @@ form > input[type=date]{
     display: flex;
     flex-flow: wrap;
     margin-top: 12px;
+    width: 100%;
+}
+
+.mcr-content .checkbox input[type="checkbox"] {
+    margin-top: 4px;
+    margin-right: 6px;
+}
+
+.is-answered-text{
+    color: #ffffffe6!important;
+    opacity: 1!important;
+}
+
+.is-answered{
+    background: #00b100;
+    border-radius: 4px;
+    padding: 7px;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -259,13 +290,13 @@ form > input[type=date]{
 
 @media only screen and (max-width: 300px) {
     h1{
-        font-size: 30px!important;
+        font-size: 34px!important;
     }
 }
 
 @media only screen and (max-width: 500px) {
     h1{
-        font-size: 34px!important;
+        font-size: 30px!important;
     }
 
     .h-brand > img {

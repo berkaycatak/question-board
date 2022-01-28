@@ -17,7 +17,7 @@ class EventsController extends Controller
      */
     public function index()
     {
-        $events = Event::get();
+        $events = Event::where('is_live', '1')->get();
         return view('pages.events.list', compact('events'));
     }
 
@@ -82,7 +82,8 @@ class EventsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $event = Event::find($id);
+        return view('pages.events.edit', compact('event'));
     }
 
     /**
@@ -92,9 +93,23 @@ class EventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EventRequest $request, $id)
     {
-        //
+        $event = Event::find($id);
+        $event->name = $request->name;
+        $event->description = $request->description;
+        $event->adress = $request->adress;
+        $event->date = $request->date;
+        $event->time = $request->time;
+        $event->created_user_id = Auth::user()->id;
+        $save = $event->save();
+
+        if ($save){
+            return redirect()->route('event.edit', $id)->withSuccess('Etkinlik detayları başarıyla düzenlendi.');
+        }else{
+            return redirect()->route('event.edit', $id)->withSuccess('Etkinlik detayları düzenlenirken bir hata oluştu.');
+        }
+
     }
 
     /**
