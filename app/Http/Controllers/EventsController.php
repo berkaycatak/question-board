@@ -17,7 +17,7 @@ class EventsController extends Controller
      */
     public function index()
     {
-        $events = Event::where('is_live', '1')->get();
+        $events = Event::where('is_live', '1')->paginate(10);
         return view('pages.events.list', compact('events'));
     }
 

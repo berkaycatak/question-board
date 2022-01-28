@@ -34,6 +34,7 @@
                 </div>
             </div>
         @endforeach
+        {{ $events->links() }}
     </div>
 
 </x-app-layout>
