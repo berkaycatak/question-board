@@ -3,6 +3,7 @@
             <h5>✍🏻 SORU TAHTASI</h5>
 
             <h1>{{ $event->name }}</h1>
+
             <div class="main-header-specs">
                 <div class="mhs-item" style="display: flex;">
                     <img class="ecs-item" height="25" width="25" style="border-radius: 50%;" src="{{ $event->user_profile_photo_path == null ? 'https://ui-avatars.com/api/?name='. $event->user_name : '/storage/'.$event->user_profile_photo_path }}" alt="{{ $event->user_name }}">
@@ -31,6 +32,9 @@
                     @endif
                 @endif
             </div>
+            <p class="event-description">{{ $event->description }}</p>
+
+            <hr>
         </div>
             <form class="mcr-content add-question-form" method="POST" action="{{ route('question_store', $event->id) }}">
                 @csrf

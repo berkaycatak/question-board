@@ -230,6 +230,14 @@ form > input[type=date]{
     opacity: 0.6;
 }
 
+.event-description{
+    font-family: 'Poppins';
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: #5e5e5e;
+}
+
 .main-content-form {
     width: 40%;
     margin-top: 2vh;

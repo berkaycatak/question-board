@@ -237,6 +237,11 @@ a {
     color: white;
 }
 
+hr{
+    border: 1px solid #efefef!important;
+    border-radius: 12px!important;
+}
+
 .dropdown span a:hover
 a:hover {
     text-decoration: none;
