@@ -52,11 +52,16 @@
 
             {{ $slot }}
 
+            <footer>
+                <a target="_blank" href="https://www.medialyra.com/">
+                    <img height="30" src="https://medialyra.com/wp-content/uploads/2021/11/lyra.png" alt="Media Lyra">
+                </a>
+                <span>| Copyright © {{ date('Y') }} Tüm Hakları Saklıdır.</span>
+            </footer>
         </main>
 
-    <footer><a target="_blank" href="https://www.medialyra.com/"><img height="30" src="https://medialyra.com/wp-content/uploads/2021/11/lyra.png" alt="Media Lyra"></a>  | Copyright © {{ date('Y') }} Tüm Hakları Saklıdır.</footer>
-
-
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="/js/custom.js"></script>
     </body>
     @stack('modals')
 

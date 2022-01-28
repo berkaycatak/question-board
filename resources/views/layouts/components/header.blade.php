@@ -14,23 +14,45 @@
         </label>
     </div>
 
-    <div class="nav-links">
+    <div class="nav-links ">
         <a href="{{ route('event.index') }}">Etkinlikler</a>
 
         @if(isset(Auth::user()->id))
             <a href="{{ route('event.create') }}">Etkinlik oluştur</a>
-            <div class="dropdown">
-                <span><a href="{{ route('profile.show') }}">Profilim</a></span>
-                <div class="dropdown-content">
-                    <ul>
+
+                <li class="button-dropdown">
+                    <a href="javascript:void(0)" class="dropdown-toggle">
+                        {{ Auth::user()->name }} <span>▼</span>
+                    </a>
+                    <ul class="dropdown-menu" style="display: none">
+                        <li><a href="{{ route('profile.show') }}">Profilim</a></li>
+                        <li><a href="{{ route('dashboard') }}">Panelim</a></li>
+                        <li>
+                            <form action="{{ route('logout') }}" method="post">
+                                @csrf
+                                <li><button type="submit">Çıkış Yap</button></li>
+                            </form>
+
+                        </li>
+                    </ul>
+                </li>
+
+            @if(false)
+                <div class="fink">
+                    <details>
+                        <summary>{{ Auth::user()->name }}</summary>
+                        <li><a href="{{ route('profile.show') }}">Profilim</a></li>
                         <li><a href="{{ route('dashboard') }}">Panelim</a></li>
                         <form action="{{ route('logout') }}" method="post">
                             @csrf
                             <li><button type="submit">Çıkış Yap</button></li>
                         </form>
-                    </ul>
+                    </details>
                 </div>
-            </div>
+            @endif
+
+
+
 
         @else
             <a href="{{ route('login') }}">Giriş Yap</a>
