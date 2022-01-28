@@ -30,6 +30,19 @@
                         <div class="ecs-item">
                             <a href="{{ route('event.show', $event->id) }}">Etkinliğe git</a>
                         </div>
+                        @isset(Auth::user()->id)
+                            @if($event->created_user_id == Auth::user()->id)
+                                <div class="ecs-item">
+                                    <form method="POST" action="{{ route('event.destroy', $event->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button onclick="return confirm('Silmek istediğinizden emin misiniz ?')" class="danger-button" type="submit">Etkinliği sil</button>
+                                    </form>
+                                </div>
+                            @endif
+                        @endif
+
+
                     </div>
                 </div>
             @endforeach

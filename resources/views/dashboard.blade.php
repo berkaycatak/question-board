@@ -23,6 +23,14 @@
                     <div class="ecs-item">
                         <a href="{{ route('event.show', $event->id) }}">Etkinliğe git</a>
                     </div>
+                    <div class="ecs-item">
+                        <form method="POST" action="{{ route('event.destroy', $event->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button onclick="return confirm('Silmek istediğinizden emin misiniz ?')" class="danger-button" type="submit">Etkinliği sil</button>
+                        </form>
+                    </div>
+
                 </div>
             </div>
         @endforeach

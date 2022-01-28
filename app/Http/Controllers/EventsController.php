@@ -120,7 +120,21 @@ class EventsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $event = Event::where("id", $id)->where("created_user_id", Auth::user()->id)->count();
+        if ($event){
+            $questions_delete = Question::where("event_id", $id)->delete();
+            $event_delete     = Event::where("id", $id)->where("created_user_id", Auth::user()->id)->delete();
+        }else{
+            return redirect()->back()->withSuccess("Yetkilendirme hatası.");
+        }
+
+        if (isset($event_delete)){
+            if ($event_delete){
+                return redirect()->back()->withSuccess("Etkinlik başarıyla silindi.");
+            }else{
+                return redirect()->back()->withSuccess("Etkinlik silinirken bir problem yaşandı.");
+            }
+        }
     }
 
 }

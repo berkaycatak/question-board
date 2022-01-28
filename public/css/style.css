@@ -242,6 +242,14 @@ hr{
     border-radius: 12px!important;
 }
 
+.danger-button{
+    background: #c10000!important;
+    color: white!important;
+    padding: 5px;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
 .dropdown span a:hover
 a:hover {
     text-decoration: none;
