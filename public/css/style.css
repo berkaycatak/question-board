@@ -242,6 +242,15 @@ hr{
     border-radius: 12px!important;
 }
 
+.color-white{
+    color: white!important;
+}
+
+.color-white-ac{
+    color: #efefef!important;
+}
+
+
 .danger-button{
     background: #c10000!important;
     color: white!important;

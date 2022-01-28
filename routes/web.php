@@ -22,7 +22,10 @@ Route::get('/', function () {
 Route::resource('/events', EventsController::class, ['names' => 'event']);
 Route::post('/events/{id}/question', [QuestionsController::class, 'store'])->name('question_store');
 Route::get('/events/{event_id}/question/answered/{question_id}', [QuestionsController::class, 'answered'])->name('question_answered');
-Route::get('/events/{event_id}/delete/answered/{question_id}', [QuestionsController::class, 'delete'])->name('question_delete');
+Route::post('/events/{event_id}/update/{question_id}', [QuestionsController::class, 'update'])->name('question_update');
+Route::get('/events/{event_id}/edit/{question_id}', [QuestionsController::class, 'edit'])->name('question_edit');
+Route::get('/events/{event_id}/delete/{question_id}', [QuestionsController::class, 'delete'])->name('question_delete');
+
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

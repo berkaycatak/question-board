@@ -37,9 +37,10 @@ class QuestionsController extends Controller
 
     public function delete($event_id, $question_id){
 
-        $get_event = Event::find($event_id);
+        $get_event    = Event::find($event_id);
+        $get_question = Question::find($question_id);
         if (isset(Auth::user()->id)) {
-            if ($get_event->created_user_id == Auth::user()->id) {
+            if ($get_event->created_user_id == Auth::user()->id || $get_question->created_user_id == Auth::user()->id) {
 
                 $delete = Question::where('id', $question_id)->delete();
                 if ($delete) {
@@ -71,6 +72,44 @@ class QuestionsController extends Controller
             }
         }else{
             return redirect()->route('event.show', $event_id)->withError('Yetkilendirme hatası.');
+        }
+    }
+
+    public function edit($event_id, $question_id){
+
+        $event = Event::join('users', 'users.id', 'events.created_user_id')
+            ->select('users.id as user_id', 'users.name as user_name', 'users.profile_photo_path as user_profile_photo_path',  'events.*')
+            ->where('events.id', $event_id)
+            ->first();
+
+        $questions = Question::where('questions.event_id', $event_id)->get();
+
+        $get_question = Question::find($question_id);
+        if ($get_question->created_user_id == Auth::user()->id || Auth::user()->admin == 1){
+            return view('pages.events.single', compact('event', "questions", "get_question"));
+        }else{
+            return redirect()->route('event.show', $event->id)->withError("Yetkilendirme hatası");
+        }
+
+    }
+
+    public function update(QuestionRequest $request, $event_id, $question_id){
+        $get_question = Question::find($question_id);
+        if ($get_question->created_user_id == Auth::user()->id || Auth::user()->admin == 1){
+            $get_question->question = $request->question;
+            if (isset($request->anonim)){
+                $get_question->is_anonim = 1;
+            }else{
+                $get_question->is_anonim = 0;
+            }
+            $save = $get_question->save();
+
+            if ($save){
+                return redirect()->route('question_edit', [$event_id, $question_id])->withSuccess("Soru başarıyla düzenlendi.");
+            }
+
+        }else{
+            return redirect()->route('event.show', $event_id)->withError("Yetkilendirme hatası");
         }
     }
 }

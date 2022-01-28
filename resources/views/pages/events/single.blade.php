@@ -36,22 +36,37 @@
 
             <hr>
         </div>
-            <form class="mcr-content add-question-form" method="POST" action="{{ route('question_store', $event->id) }}">
-                @csrf
-                <label for="addquestion">💬 Soru Ekle</label>
-                <textarea required name="question" id="addquestion" rows="1"></textarea>
 
-            @if(isset(Auth::user()->id))
+            @isset($get_question)
+                <form class="mcr-content add-question-form" method="POST" action="{{ route('question_update', [$event->id, $get_question->id]) }}">
+                    @csrf
+                    <label for="addquestion">💬 Soruyu düzenle</label>
+                    <textarea required name="question" id="addquestion" rows="1">{{ $get_question->question }}</textarea>
+
                     <div class="checkbox">
-                        <input id="anonim" name="anonim" type="checkbox">
+                        <input id="anonim" name="anonim" type="checkbox" @if($get_question->is_anonim == 1) checked @endif>
                         <label for="anonim">İsmim görünmesin</label>
                     </div>
-                @else
-                    <a href="{{ route('register') }}" style="color: black; margin-top: 10px;">Kayıt olarak isimli sor.</a>
-                @endif
-                <input type="submit" value="Gönder">
-            </form>
 
+                    <input type="submit" value="Kaydet">
+                </form>
+            @else
+                <form class="mcr-content add-question-form" method="POST" action="{{ route('question_store', $event->id) }}">
+                    @csrf
+                    <label for="addquestion">💬 Soru Ekle</label>
+                    <textarea required name="question" id="addquestion" rows="1"></textarea>
+
+                    @if(isset(Auth::user()->id))
+                        <div class="checkbox">
+                            <input id="anonim" name="anonim" type="checkbox">
+                            <label for="anonim">İsmim görünmesin</label>
+                        </div>
+                    @else
+                        <a href="{{ route('register') }}" style="color: black; margin-top: 10px;">Kayıt olarak isimli sor.</a>
+                    @endif
+                    <input type="submit" value="Gönder">
+                </form>
+            @endif
             <label class="questions-title">🤔 Sorular</label>
             <div class="main-content">
                 <div class="questions">
@@ -69,26 +84,23 @@
                                     <span @if($question->is_answered) class="is-answered-text" @endif> {{ timeConvert($question->created_at) }} {{ $sender_name }} tarafından gönderildi.</span>
                                 </div>
                                 <div class="mci-context">
-                                    <span
-                                    @if($question->is_answered)
-                                        style=" color: white!important; "
-                                    @endif
-                                    >{{ $question->question }}</span>
+                                    <span  @if($question->is_answered) class="color-white" @endif >{{ $question->question }}</span>
                                     @isset(Auth::user()->id)
                                         @if(Auth::user()->id == $event->created_user_id)
 
-                                            <small
-                                                @if($question->is_answered)
-                                                   style=" color: #efefef; "
-                                                @endif
-                                            >
+                                            <small @if($question->is_answered) class="color-white-ac" @endif >
                                                 <a href="{{ route("question_answered", ["event_id" => $event->id, "question_id" => $question->id]) }}">Cevaplandı</a> | <a href="{{ route("question_delete", ["event_id" => $event->id, "question_id" => $question->id]) }}">Sil</a>
+                                            </small>
+                                        @endif
+                                        @if(Auth::user()->id == $question->created_user_id)
+                                            <small @if($question->is_answered) class="color-white-ac" @endif >
+                                                <a href="{{ route("question_edit", ["event_id" => $event->id, "question_id" => $question->id]) }}">Düzenle</a> | <a href="{{ route("question_delete", ["event_id" => $event->id, "question_id" => $question->id]) }}">Sil</a>
                                             </small>
                                         @endif
                                     @endif
                                 </div>
                             </div>
-                                @php($counter++)
+                            @php($counter++)
                         @endforeach
                     @else
                         <span class="no-question">
