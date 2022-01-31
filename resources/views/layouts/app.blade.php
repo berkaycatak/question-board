@@ -25,19 +25,20 @@
     </head>
     <body>
         @include('layouts.components.header')
-        <main>
-            @isset($errors)
-                @if($errors->any())
-                    <div class="container mt-3">
-                        <div class="mt-3 form-error-top">
-                            @foreach($errors->all() as $error)
-                                <li> {{ $error }} </li>
-                            @endforeach
-                        </div>
-                    </div>
-                @endif
-            @endif
 
+        @isset($errors)
+            @if($errors->any())
+                <div class="errors mt-3">
+                    <div class="mt-3 form-error-top">
+                        @foreach($errors->all() as $error)
+                            <li> {{ $error }} </li>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+        @endif
+
+        <main @isset($errors) style="padding-top: 10px;" @endif>
             @if(session('success') != "")
                 <div class="container mt-3">
                     @php(printSuccessMessage(session('success')))
@@ -52,7 +53,6 @@
 
 
             {{ $slot }}
-
 
             @if(false)
                 <footer>

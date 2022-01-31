@@ -416,6 +416,10 @@ img.h-brand-img {
     margin-right: 10px;
 }
 
+.errors{
+    padding: 15px 45px 0px 45px;
+}
+
 @media (max-width:600px) {
     .nav{
         padding: 0px;
