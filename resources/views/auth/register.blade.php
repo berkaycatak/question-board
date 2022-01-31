@@ -16,8 +16,6 @@
         }
     </style>
 
-
-
     <div class="left">
         @include('layouts.components.about')
     </div>

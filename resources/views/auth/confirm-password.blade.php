@@ -3,8 +3,6 @@
             {{ __('Lütfen yeni şifrenizi girin.') }}
         </div>
 
-        <x-jet-validation-errors class="mb-4" />
-
         <form method="POST" action="{{ route('password.confirm') }}">
             @csrf
 
