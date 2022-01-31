@@ -38,7 +38,7 @@
             @endif
         @endif
 
-        <main @isset($errors) style="padding-top: 10px;" @endif>
+        <main @isset($errors) @if($errors->any()) style="padding-top: 10px;" @endif @endif>
             @if(session('success') != "")
                 <div class="container mt-3">
                     @php(printSuccessMessage(session('success')))
