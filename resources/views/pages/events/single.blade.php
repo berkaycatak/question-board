@@ -17,14 +17,14 @@
                     <span>🗓</span>
                     <span class="ecs-item-text">{{ $event->date }}</span>
                 </div>
-                <div class="mhs-item">
+                <div class="mhs-item mt-1">
                     <div class="ecs-item">
                         <a target="_blank" href="{{ $event->adress }}">Etkinliğe git</a>
                     </div>
                 </div>
                 @isset(Auth::user()->id)
                     @if($event->created_user_id == Auth::user()->id)
-                        <div class="mhs-item">
+                        <div class="mhs-item mt-1">
                             <div class="ecs-item">
                                 <a href="{{ route('event.edit', $event->id) }}">Etkinliği düzenle</a>
                             </div>

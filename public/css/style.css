@@ -420,6 +420,10 @@ img.h-brand-img {
     padding: 15px 45px 0px 45px;
 }
 
+.mt-1{
+    margin-top: 10px;
+}
+
 @media (max-width:600px) {
     .nav{
         padding: 0px;
