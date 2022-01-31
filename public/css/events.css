@@ -207,7 +207,7 @@ form > input[type=text] {
     border-bottom: 1px solid rgba(128, 128, 128, 0.329);
     padding-bottom: 0.5vw;
     font-size: 0.8rem;
-    color: #CCC;
+    color: black;
 }
 
 form > input[type=submit] {

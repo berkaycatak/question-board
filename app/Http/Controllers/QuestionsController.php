@@ -37,7 +37,7 @@ class QuestionsController extends Controller
 
     public function delete($event_id, $question_id){
 
-        $get_event    = Event::find($event_id);
+        $get_event    = Event::find($event_id) ?? abort(404);
         $get_question = Question::find($question_id);
         if (isset(Auth::user()->id)) {
             if ($get_event->created_user_id == Auth::user()->id || $get_question->created_user_id == Auth::user()->id) {
@@ -53,7 +53,7 @@ class QuestionsController extends Controller
     }
 
     public function answered($event_id, $question_id){
-        $get_event = Event::find($event_id);
+        $get_event = Event::find($event_id) ?? abort(404);
         if (isset(Auth::user()->id)){
             if ($get_event->created_user_id == Auth::user()->id){
 
@@ -80,11 +80,11 @@ class QuestionsController extends Controller
         $event = Event::join('users', 'users.id', 'events.created_user_id')
             ->select('users.id as user_id', 'users.name as user_name', 'users.profile_photo_path as user_profile_photo_path',  'events.*')
             ->where('events.id', $event_id)
-            ->first();
+            ->first() ?? abort(404);
 
         $questions = Question::where('questions.event_id', $event_id)->get();
 
-        $get_question = Question::find($question_id);
+        $get_question = Question::find($question_id) ?? abort(404);
         if ($get_question->created_user_id == Auth::user()->id || Auth::user()->admin == 1){
             return view('pages.events.single', compact('event', "questions", "get_question"));
         }else{
@@ -94,7 +94,7 @@ class QuestionsController extends Controller
     }
 
     public function update(QuestionRequest $request, $event_id, $question_id){
-        $get_question = Question::find($question_id);
+        $get_question = Question::find($question_id) ?? abort(404);
         if ($get_question->created_user_id == Auth::user()->id || Auth::user()->admin == 1){
             $get_question->question = $request->question;
             if (isset($request->anonim)){

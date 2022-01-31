@@ -67,7 +67,7 @@ class EventsController extends Controller
         $event = Event::join('users', 'users.id', 'events.created_user_id')
             ->select('users.id as user_id', 'users.name as user_name', 'users.profile_photo_path as user_profile_photo_path',  'events.*')
             ->where('events.id', $id)
-            ->first();
+            ->first() ?? abort(404);
 
         $questions = Question::where('questions.event_id', $id)->get();
 
@@ -82,7 +82,7 @@ class EventsController extends Controller
      */
     public function edit($id)
     {
-        $event = Event::find($id);
+        $event = Event::find($id) ?? abort(404);
         return view('pages.events.edit', compact('event'));
     }
 
@@ -95,7 +95,7 @@ class EventsController extends Controller
      */
     public function update(EventRequest $request, $id)
     {
-        $event = Event::find($id);
+        $event = Event::find($id) ?? abort(404);
         $event->name = $request->name;
         $event->description = $request->description;
         $event->adress = $request->adress;
