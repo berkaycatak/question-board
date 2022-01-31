@@ -20,11 +20,7 @@
                             @isset(Auth::user()->id)
                                 @if($event->created_user_id == Auth::user()->id)
                                     <a href="{{ route('event.edit', $event->id) }}">Etkinliği düzenle</a>
-                                @else
-                                    <a href="{{ route('event.show', $event->id) }}">Soru sor</a>
                                 @endif
-                            @else
-                                <a href="{{ route('event.show', $event->id) }}">Soru sor</a>
                             @endif
                         </div>
                         <div class="ecs-item">

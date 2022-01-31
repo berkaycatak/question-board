@@ -17,11 +17,13 @@
                     <span>🗓</span>
                     <span class="ecs-item-text">{{ $event->date }}</span>
                 </div>
-                <div class="mhs-item mt-1">
-                    <div class="ecs-item">
-                        <a target="_blank" href="{{ $event->adress }}">Etkinliğe git</a>
+                @if($event->adress != null)
+                    <div class="mhs-item mt-1">
+                        <div class="ecs-item">
+                            <a target="_blank" href="{{ $event->adress }}">Etkinliğe Katıl</a>
+                        </div>
                     </div>
-                </div>
+                @endif
                 @isset(Auth::user()->id)
                     @if($event->created_user_id == Auth::user()->id)
                         <div class="mhs-item mt-1">
