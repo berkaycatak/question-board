@@ -27,7 +27,7 @@ class EventRequest extends FormRequest
             'name' => 'required|max:255|min:5',
             'time' => 'required|max:5|min:5',
             'description' => 'nullable|max:1000',
-            'adress' => 'nullable|url|max:500',
+            'adress' => ['nullable','regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/'],
             'date' => 'required|date_format:Y-m-d|after_or_equal:today'
         ];
     }
