@@ -21,7 +21,7 @@ class EventsMigration extends Migration
             $table->date('date');
             $table->char('time', 6);
             $table->integer('created_user_id');
-            $table->char('is_live', 1);
+            $table->char('is_live', 1)->default(1);
             $table->timestamps();
         });
     }
