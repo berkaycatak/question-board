@@ -11,7 +11,7 @@
             <label for="eventname">Adı *</label>
             <input class="mb" name="name" value="{{ old('name') }}" type="text" placeholder="Etkinliğin adını girin" required>
             <label for="eventtime">⏰ Saati *</label>
-            <input class="mb" name="time" value="{{ old('time') }}" type="text" placeholder="Etkinliğin saatini girin Örn: 13:00" required>
+            <input class="mb time-element" name="time" id="time" value="{{ old('time') }}" type="text" placeholder="Etkinliğin saatini girin Örn: 13:00" required>
             <label for="eventtime">👀 Konusu</label>
             <input class="mb" name="description" value="{{ old('description') }}" type="text" placeholder="Etkinliğin konusunu girin">
             <label for="eventtime">📍 Adresi</label>
@@ -21,4 +21,15 @@
             <input type="submit" value="Ekle">
         </form>
     </div>
+
+    <x-slot name="js">
+        <script src="https://nosir.github.io/cleave.js/dist/cleave.min.js"></script>
+        <script>
+            var cleave = new Cleave('.time-element', {
+                time: true,
+                timePattern: ['h', 'm']
+            });
+        </script>
+
+    </x-slot>
 </x-app-layout>
