@@ -15,7 +15,7 @@
             <label for="eventtime">👀 Konusu</label>
             <input class="mb" name="description" value="{{ old('description') }}" type="text" placeholder="Etkinliğin konusunu girin">
             <label for="eventtime">📍 Adresi</label>
-            <input class="mb" name="adress" value="{{ old('adress') }}" type="text" placeholder="Etkinliğin adresini girin">
+            <input class="mb url-element" name="adress" value="{{ old('adress') }}" type="text" placeholder="Etkinliğin adresini girin">
             <label for="eventdate">🗓 Günü *</label>
             <input class="mb" name="date" value="{{ old('date') }}" type="date" placeholder="Etkinliğin gününü GG.AA.YYYY şeklinde girin" required>
             <input type="submit" value="Ekle">
@@ -28,6 +28,10 @@
             var cleave = new Cleave('.time-element', {
                 time: true,
                 timePattern: ['h', 'm']
+            });
+
+            var cleave2 = new Cleave('.url-element', {
+                prefix: 'https://'
             });
         </script>
 
