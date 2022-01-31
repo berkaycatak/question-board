@@ -1,66 +1,67 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<p align="center"><a href="https://www.sorutahtasi.com" target="_blank"><img src="https://user-images.githubusercontent.com/34205493/151849821-f45b56bb-9b54-478b-ac32-278d148e7013.png" height="50"></a></p>
 
-## About Laravel
+# Soru Tahtası
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Soru Tahtası, Google Oyun ve Uygulama Akademisi canlı yayınlarında yayıncıya soru iletilmesi, bu soruların ve etkinliklerin yönetiminin kolaylaştırılması için geliştirilmiştir.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+# Nasıl Kullanılır?
+<ol>
+  <li>
+      <a href="https://www.sorutahtasi.com/register">Kayıt ol</a> sayfasında E-Mail, ad soyad ve şifre bilgilerini girmenizin ardından "kayıt ol" butonuna tıklatın
+  </li>
+  
+  <li>
+      <a href="https://sorutahtasi.com/user/profile">Kullanıcı profili</a> sayfası üzerinden profil bilgilerinizi, şifrenizi değiştirebilirsiniz. İki faktörlü          kimlik doğrulamasını etkinleştirebilir, mevcut oturumlarınızı görüntüleyebilir / diğer oturumlardan çıkış yapabilir ve hesabınızı silebilirsiniz. 
+  </li>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+  <li>
+      <a href="https://sorutahtasi.com/events">Etkinlikler</a> sayfasında oluşturulmuş etkinlikleri görüntüleyebilirsiniz.
+  </li>
+    
+  <li>
+      <a href="https://sorutahtasi.com/event/1">Etkinlik</a> sayfasında etkinliğe gönderilmiş soruları görebilir, etkinliği oluşturan sizseniz soruları cevaplandı olarak işaretleyebilir ya da silebilirsiniz. Soruyu soran kişi olarak giriş yaptıysanız ise sorunuzu silebilir veya düzenleyebilirsiniz.
+  </li>
+    
+  <li>
+      <a href="https://sorutahtasi.com/dashboard">Panel</a> sayfası üzerinden oluşturduğunuz tüm etkinlikleri görebilir ve silebilirsiniz.
+  </li>
+</ol>
 
-## Learning Laravel
+# Nasıl Kurulur?
+<ol>
+    <li><a href="https://github.com/berkaycatak/question-board">Proje anasayfasında</a> "Code" butonuna tıklatıp "Download ZIP"e tıklatıp projeyi bilgisayarınıza indirin.</li>
+      <img alt="download zip" src="https://user-images.githubusercontent.com/34205493/151851687-3e72a952-ac66-41ab-b3c7-0addabfc004e.png">
+    <li>Terminal üzerinden proje dizinine girin.</li>
+    <li>"composer update" komutunu çalıştırın.</li>
+    <li>.env dosyasını açıp veritabanı kullanıcı adınızı ve şifrenizi girin.</li>
+    <li>Terminal üzerinden "php artisan migrate" komutunu çalıştırın.</li>   
+    <li>Projeyi ayağa kaldırmak için yine terminal üzerinden "php artisan serve" komutunu çalıştırın.</li>
+</ol>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+# Ekran Görüntüleri
+    
+### Etkinlikler sayfası
+<img alt="events-page" src="https://user-images.githubusercontent.com/34205493/151851031-560a052d-7aca-415a-a084-05d8cd86631f.png">
+    
+### Etkinlik sayfası
+<img alt="event-single-page" src="https://user-images.githubusercontent.com/34205493/151851038-cc80659e-0507-4e79-a785-682143d6671d.png">
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Giriş sayfası
+<img alt="login-page" src="https://user-images.githubusercontent.com/34205493/151851051-79594e49-5c8c-4dfe-a933-c11adf5d51bf.png">
 
-## Laravel Sponsors
+### Profil sayfası
+<img alt="profile-page" src="https://user-images.githubusercontent.com/34205493/151851054-cee4adf8-2b80-419d-b565-c789bf556842.png">
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-### Premium Partners
+# License
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-- **[Romega Software](https://romegasoftware.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+> Copyright 2021 Berkay Çatak.
+>
+> Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+>
+> http://www.apache.org/licenses/LICENSE-2.0
+>
+> Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+>
