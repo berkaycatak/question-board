@@ -28,7 +28,7 @@ class EventRequest extends FormRequest
             'time' => 'required|max:5|min:5',
             'description' => 'nullable|max:1000',
             'adress' => 'nullable|max:500',
-            'date' => 'required|date'
+            'date' => 'required|date_format:Y-m-d|after_or_equal:today'
         ];
     }
 
@@ -39,7 +39,8 @@ class EventRequest extends FormRequest
             'time' => 'saati',
             'description' => 'konusu',
             'adress' => 'adresi',
-            'date' => 'tarihi'
+            'date' => 'tarihi',
+            'today' => 'bugünün tarihi'
         ];
     }
 
