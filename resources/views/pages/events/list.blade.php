@@ -41,7 +41,7 @@
                 </div>
             @endforeach
             {{ $events->links() }}
-            @if(count($events) == 0)
+            @if(count($events) == 0 )
                 <span>Henüz hiç etkinlik yok. <a href="{{ route('event.create') }}">Hemen oluştur!</a></span>
             @endif
         </div>
