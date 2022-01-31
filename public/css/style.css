@@ -368,6 +368,10 @@ NAVBAR
     display: none;
 }
 
+.nav-links{
+    z-index: 9999;
+}
+
 .nav > .nav-links {
     display: inline;
     float: right;
