@@ -13,7 +13,15 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
         <meta name="yandex-verification" content="f093c89ba5a445d4" />
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-JGS5TSLP9F"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
 
+            gtag('config', 'G-JGS5TSLP9F');
+        </script>
         <!-- Styles -->
         <link rel="stylesheet" href="/css/style.css">
         <link rel="stylesheet" href="/css/app.css">
