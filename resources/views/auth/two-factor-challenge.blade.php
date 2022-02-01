@@ -1,5 +1,7 @@
 <x-app-layout>
-        <div x-data="{ recovery: false }">
+    <x-slot name="website_title">Çift Faktörlü Kimlik Doğrulaması</x-slot>
+
+    <div x-data="{ recovery: false }">
             <div class="mb-4 text-sm text-gray-600" x-show="! recovery">
                 {{ __('Lütfen kimlik doğrulama uygulamanız tarafından sağlanan kimlik doğrulama kodunu girerek hesabınıza erişimi onaylayın.') }}
             </div>

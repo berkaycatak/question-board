@@ -1,4 +1,7 @@
 <x-app-layout>
+    <x-slot name="website_title">Kayıt Ol</x-slot>
+    <x-slot name="website_description">Kayıt ol ve Soru Tahtası'nda etkinlik oluştur.</x-slot>
+
     <x-slot name="header"></x-slot>
     <style>main{ flex-direction: row!important; }
 

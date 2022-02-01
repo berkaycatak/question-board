@@ -1,4 +1,7 @@
 <x-app-layout>
+    <x-slot name="website_title">Giriş Yap</x-slot>
+    <x-slot name="website_description">Giriş yap ve Soru Tahtası'nda etkinlik oluştur.</x-slot>
+
     <style>main{ flex-direction: row!important; }
 
         @media (max-width:820px) {

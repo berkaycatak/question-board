@@ -1,4 +1,7 @@
 <x-app-layout>
+    <x-slot name="website_home_title">{{ config('app.name', 'Laravel') }} - Canlı Yayında Sorularını Yönet!</x-slot>
+    <x-slot name="website_description">Etkinlik oluştur ve izleyicilerinden soru al! Canlı yayında kolay arayüz ile soruları yönet ve cevapla!</x-slot>
+
     <div class="landing-page">
         <h1>Soru Tahtası</h1>
         <h3>Linkini paylaş ve soruları gör!</h3>

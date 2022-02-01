@@ -1,4 +1,6 @@
 <x-app-layout>
+    <x-slot name="website_title">Panelim</x-slot>
+
     <div class="main-header">
         <h5>👀 Panelim</h5>
         <h1>Etkinliklerim</h1>

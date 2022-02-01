@@ -1,5 +1,7 @@
 <x-app-layout>
-        <div class="mb-4 text-sm text-gray-600">
+    <x-slot name="website_title">Şifreni Onayla</x-slot>
+
+    <div class="mb-4 text-sm text-gray-600">
             {{ __('Lütfen yeni şifrenizi girin.') }}
         </div>
 

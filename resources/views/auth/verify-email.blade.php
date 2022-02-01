@@ -1,5 +1,7 @@
 <x-app-layout>
-     <div class="mb-4 text-sm text-gray-600">
+    <x-slot name="website_title">Mailini Doğrula</x-slot>
+
+    <div class="mb-4 text-sm text-gray-600">
             {{ __('Üye olduğunuz için teşekkürler! Başlamadan önce, size az önce e-postayla gönderdiğimiz bağlantıya tıklayarak e-posta adresinizi doğrulayabilir misiniz? E-postayı almadıysanız, size memnuniyetle başka bir e-posta göndeririz.') }}
         </div>
 

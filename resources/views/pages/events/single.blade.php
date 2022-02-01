@@ -1,5 +1,8 @@
 <x-app-layout>
-        <div class="main-header">
+    <x-slot name="website_title">{{ $event->name }}</x-slot>
+    <x-slot name="website_description">Soru cevap etkinliği {{ $event->name }}. {{ $event->description }}</x-slot>
+
+    <div class="main-header">
             <h5>✍🏻 SORU TAHTASI</h5>
 
             <h1>{{ $event->name }}</h1>

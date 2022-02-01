@@ -1,4 +1,6 @@
 <x-app-layout>
+    <x-slot name="website_title">Şifreni Sıfırla</x-slot>
+
     <form method="POST" action="{{ route('password.update') }}">
         @csrf
 

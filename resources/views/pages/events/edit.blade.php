@@ -1,4 +1,6 @@
 <x-app-layout>
+    <x-slot name="website_title">Etkinliği Düzenle</x-slot>
+
     <div class="main-header">
         <h5 class="main-header-h5">✍🏻 ETKİNLİK PANOSU</h5>
         <h1>Etkinliği düzenle</h1>

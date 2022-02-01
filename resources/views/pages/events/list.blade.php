@@ -1,5 +1,8 @@
 <x-app-layout>
-        <div class="main-header">
+    <x-slot name="website_title">Yaklaşan Soru Cevap Etkinlikleri</x-slot>
+    <x-slot name="website_description">Soru Tahtası üzerinde oluşturulmuş soru cevap etkinliklerini görüntüleyebilirsiniz. Kendi soru cevap etkinliğinizi oluşturup canlı yayında yönetebilirsiniz.</x-slot>
+
+    <div class="main-header">
             <h5>👀 Etkinlikler</h5>
             <h1>Yaklaşan Etkinlikler</h1>
         </div>

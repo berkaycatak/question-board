@@ -1,4 +1,6 @@
 <x-app-layout>
+    <x-slot name="website_title">Şifremi Unuttum</x-slot>
+    <x-slot name="website_description">Soru Tahtası hesabınızın şifresini unuttuysanız kısa form ile şifrenizi yenileyin.</x-slot>
 
         <div class="mb-4 text-sm text-gray-600">
             {{ __('Parolanızı mı unuttunuz? Sorun yok. Sadece bize e-posta adresinizi bildirin, size şifrenizi değiştirmenizi sağlayacak bir şifre sıfırlama bağlantıs içeren e-posta gönderelim.') }}

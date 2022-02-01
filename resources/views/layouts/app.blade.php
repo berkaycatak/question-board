@@ -4,8 +4,17 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        @isset($website_title)
+            <title>{{ $website_title }} - {{ config('app.name', 'Laravel') }}</title>
+        @elseif(isset($website_home_title))
+            <title>{{ $website_home_title }}</title>
+        @else
+            <title>{{ config('app.name', 'Laravel') }}</title>
+        @endif
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        @isset($website_description)
+            <meta name="description" content="{{ $website_description }}">
+        @endif
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
