@@ -89,8 +89,8 @@
             </div>
         @endforeach
         {{ $past_events->links() }}
-        @if(count($events) == 0 )
-            <span>Henüz hiç etkinlik yok. <a href="{{ route('event.create') }}">Hemen oluştur!</a></span>
+        @if(count($past_events) == 0 )
+            <span>Kaçırdığın bir etkinlik yok.</a></span>
         @endif
     </div>
 </x-app-layout>
