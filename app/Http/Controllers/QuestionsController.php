@@ -75,6 +75,30 @@ class QuestionsController extends Controller
         }
     }
 
+    public function not_answered($event_id, $question_id){
+        $get_event = Event::find($event_id) ?? abort(404);
+        if (isset(Auth::user()->id)){
+            if ($get_event->created_user_id == Auth::user()->id){
+
+                $question = Question::find($question_id);
+                $question->is_answered = 0;
+                $answered = $question->save();
+
+                if ($answered){
+                    return redirect()->route('event.show', $event_id)->withSuccess('Soru başarıyla cevaplanmadı olarak işaretlendi.');
+                }else{
+                    return redirect()->route('event.show', $event_id)->withError('Soru cevaplanmadı olarak işaretlenirken bir problem yaşandı.');
+                }
+
+            }else{
+                return redirect()->route('event.show', $event_id)->withError('Yetkilendirme hatası.');
+            }
+        }else{
+            return redirect()->route('event.show', $event_id)->withError('Yetkilendirme hatası.');
+        }
+    }
+
+
     public function edit($event_id, $question_id){
 
         $event = Event::join('users', 'users.id', 'events.created_user_id')

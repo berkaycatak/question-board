@@ -94,7 +94,13 @@
                                         @if(Auth::user()->id == $event->created_user_id)
 
                                             <small @if($question->is_answered) class="color-white-ac" @endif >
-                                                <a href="{{ route("question_answered", ["event_id" => $event->id, "question_id" => $question->id]) }}">Cevaplandı</a> | <a href="{{ route("question_delete", ["event_id" => $event->id, "question_id" => $question->id]) }}">Sil</a>
+                                                @if($question->is_answered)
+                                                    <a href="{{ route("question_not_answered", ["event_id" => $event->id, "question_id" => $question->id]) }}">Cevaplanmadı</a>
+                                                @else
+                                                    <a href="{{ route("question_answered", ["event_id" => $event->id, "question_id" => $question->id]) }}">Cevaplandı</a>
+                                                @endif
+                                                |
+                                                <a href="{{ route("question_delete", ["event_id" => $event->id, "question_id" => $question->id]) }}">Sil</a>
                                             </small>
                                         @endif
                                         @if(Auth::user()->id == $question->created_user_id)
