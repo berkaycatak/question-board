@@ -18,7 +18,7 @@ class EventsController extends Controller
     public function index()
     {
         $events      = Event::where('is_live', '1')->where('date', ">=", date('Y-m-d'))->paginate(10);
-        $past_events = Event::where('is_live', '1')->where('date', "<=", date('Y-m-d'))->paginate(10);
+        $past_events = Event::where('is_live', '1')->where('date', "<", date('Y-m-d'))->paginate(10);
         return view('pages.events.list', compact('events', 'past_events'));
     }
 

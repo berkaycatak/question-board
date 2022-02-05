@@ -53,8 +53,8 @@ class QuestionsController extends Controller
     }
 
     public function answered($event_id, $question_id){
-        $get_event = Event::find($event_id) ?? abort(404);
         if (isset(Auth::user()->id)){
+            $get_event = Event::find($event_id) ?? abort(404);
             if ($get_event->created_user_id == Auth::user()->id){
 
                 $question = Question::find($question_id);
@@ -76,8 +76,8 @@ class QuestionsController extends Controller
     }
 
     public function not_answered($event_id, $question_id){
-        $get_event = Event::find($event_id) ?? abort(404);
         if (isset(Auth::user()->id)){
+            $get_event = Event::find($event_id) ?? abort(404);
             if ($get_event->created_user_id == Auth::user()->id){
 
                 $question = Question::find($question_id);
@@ -100,40 +100,42 @@ class QuestionsController extends Controller
 
 
     public function edit($event_id, $question_id){
+        if (isset(Auth::user()->id)){
+            $event = Event::join('users', 'users.id', 'events.created_user_id')
+                    ->select('users.id as user_id', 'users.name as user_name', 'users.profile_photo_path as user_profile_photo_path',  'events.*')
+                    ->where('events.id', $event_id)
+                    ->first() ?? abort(404);
 
-        $event = Event::join('users', 'users.id', 'events.created_user_id')
-            ->select('users.id as user_id', 'users.name as user_name', 'users.profile_photo_path as user_profile_photo_path',  'events.*')
-            ->where('events.id', $event_id)
-            ->first() ?? abort(404);
+            $questions = Question::where('questions.event_id', $event_id)->get() ?? abort(404);
 
-        $questions = Question::where('questions.event_id', $event_id)->get();
-
-        $get_question = Question::find($question_id) ?? abort(404);
-        if ($get_question->created_user_id == Auth::user()->id || Auth::user()->admin == 1){
-            return view('pages.events.single', compact('event', "questions", "get_question"));
-        }else{
-            return redirect()->route('event.show', $event->id)->withError("Yetkilendirme hatası");
+            $get_question = Question::find($question_id) ?? abort(404);
+            if ($get_question->created_user_id == Auth::user()->id || Auth::user()->admin == 1){
+                return view('pages.events.single', compact('event', "questions", "get_question"));
+            }else{
+                return redirect()->route('event.show', $event->id)->withError("Yetkilendirme hatası");
+            }
         }
-
     }
 
     public function update(QuestionRequest $request, $event_id, $question_id){
-        $get_question = Question::find($question_id) ?? abort(404);
-        if ($get_question->created_user_id == Auth::user()->id || Auth::user()->admin == 1){
-            $get_question->question = $request->question;
-            if (isset($request->anonim)){
-                $get_question->is_anonim = 1;
+        if (isset(Auth::user()->id)){
+            $get_question = Question::find($question_id) ?? abort(404);
+            if ($get_question->created_user_id == Auth::user()->id || Auth::user()->admin == 1){
+                $get_question->question = $request->question;
+                if (isset($request->anonim)){
+                    $get_question->is_anonim = 1;
+                }else{
+                    $get_question->is_anonim = 0;
+                }
+                $save = $get_question->save();
+
+                if ($save){
+                    return redirect()->route('question_edit', [$event_id, $question_id])->withSuccess("Soru başarıyla düzenlendi.");
+                }
+
             }else{
-                $get_question->is_anonim = 0;
+                return redirect()->route('event.show', $event_id)->withError("Yetkilendirme hatası");
             }
-            $save = $get_question->save();
-
-            if ($save){
-                return redirect()->route('question_edit', [$event_id, $question_id])->withSuccess("Soru başarıyla düzenlendi.");
-            }
-
-        }else{
-            return redirect()->route('event.show', $event_id)->withError("Yetkilendirme hatası");
         }
     }
 }
