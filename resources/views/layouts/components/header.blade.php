@@ -2,7 +2,7 @@
     <input type="checkbox" id="nav-check">
     <div class="nav-header">
         <div class="nav-title"  onclick="window.location = '/'">
-            <img class="h-brand-img" src="/img/ouakademi-logo-colored.svg" alt="">
+            <img class="h-brand-img" src="/img/icon.png" alt="">
             <h3>Soru Tahtası</h3>
         </div>
     </div>

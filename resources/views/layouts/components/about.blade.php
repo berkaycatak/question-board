@@ -1,8 +1,8 @@
 <div class="left-context">
     <div class="lc-top">
         <div class="lc-head">
-            <img src="/img/ouakademi-logo.svg" alt="">
-            <h2>Oyun ve Uygulama Akademisi</h2>
+            <img src="/img/icon-white.png" alt="">
+            @if(false) <h2>Oyun ve Uygulama Akademisi</h2> @endif
         </div>
         <div class="lc-context">
             <h1>Soru Sor</h1>
