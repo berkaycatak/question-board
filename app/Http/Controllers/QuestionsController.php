@@ -31,12 +31,18 @@ class QuestionsController extends Controller
 
         $save = $question->save();
         if ($save){
-            $client = new Client(new Version2X('https://sorutahtasi.com:5222', [
-                'headers' => [
-                    'X-My-Header: websocket rocks',
-                    'Authorization: Bearer 12b3c4d5e6f7g8h9i'
+
+            /*
+            $options = [
+                'context' => [
+                    'ssl' => [
+                        'verify_peer' => false,
+                        'verify_peer_name' => false
+                    ]
                 ]
-            ]));
+            ];
+
+            $client = new Client(new Version2X("https://sorutahtasi.com:5222",  $options));
 
             $client->initialize();
             $client->emit('event-1', [
@@ -46,6 +52,7 @@ class QuestionsController extends Controller
                 "content" => $request->question
             ]);
             $client->close();
+            */
             return redirect()->route('event.show', $id)->withSuccess('Sorunuz başarıyla gönderildi.');
         }else{
             return redirect()->route('event.show', $id)->withError('Sorunuz gönderilirken bir problem yaşandı.');
