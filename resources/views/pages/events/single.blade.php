@@ -124,8 +124,6 @@
 
 
     <script>
-        const socket = io("https://sorutahtasi.com:5222", { transports : ['websocket'] });
-
         socket.on('event-{{ $event->id }}', function (data) {
             var item = $('<div class="mc-item">' +
                 '<div class="mci-head">' +
@@ -136,15 +134,11 @@
                 '<span>'+ data["content"] +'</span>' +
                 '</div>' +
                 '<div>').hide().fadeIn(500);
-
             $('.questions').append(item);
-        });
+            $.playSound('/sound/notification.mp3');
+            $.ambiance({message: "Yeni sorular var, cevaplamayı unutma! :)",  fade: true,  timeout: 5});
 
-        socket.emit('send-questions', {
-            "event_id" : 1,
-            "sender_name": "anonim",
-            "date" : "az önce",
-            "content" : " ?"
+
         });
 
 

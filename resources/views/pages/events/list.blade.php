@@ -90,7 +90,7 @@
         @endforeach
         {{ $past_events->links() }}
         @if(count($past_events) == 0 )
-            <span>Kaçırdığın bir etkinlik yok.</a></span>
+            <span>Kaçırdığın bir etkinlik yok.</span>
         @endif
     </div>
 </x-app-layout>
