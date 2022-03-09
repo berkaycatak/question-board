@@ -36,10 +36,10 @@ class QuestionsController extends Controller
 
             $save = $question->save();
             if ($save){
-                //print "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js\" integrity=\"sha512-MgkNs0gNdrnOM7k+0L+wgiRc5aLgl74sJQKbIWegVIMvVGPc1+gc1L2oK9Wf/D9pq58eqIJAxOonYPVE5UwUFA==\" crossorigin=\"anonymous\" referrerpolicy=\"no-referrer\"></script>";
-                //print '<script>const socket = io("https://sorutahtasi.com:5222", { transports : [\'websocket\'] });</script>';
+                print "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js\" integrity=\"sha512-MgkNs0gNdrnOM7k+0L+wgiRc5aLgl74sJQKbIWegVIMvVGPc1+gc1L2oK9Wf/D9pq58eqIJAxOonYPVE5UwUFA==\" crossorigin=\"anonymous\" referrerpolicy=\"no-referrer\"></script>";
+                print '<script>const socket2 = io("https://sorutahtasi.com:5222", { transports : [\'websocket\'] });</script>';
+                print '<script>socket2.emit("send-questions", { "event_id" : '. $question->event_id .', "sender_name": "'. $sender_name .'", "date" : "az önce", "content" : "'. $question->question .'" });</script>';
                 print view('layouts.redirect.question')->render();
-                print '<script>socket.emit("send-questions", { "event_id" : '. $question->event_id .', "sender_name": "'. $sender_name .'", "date" : "az önce", "content" : "'. $question->question .'" });</script>';
                 sleep(1);
                 return redirect()->route('event.show', $id)->withSuccess('Sorunuz başarıyla gönderildi.');
             }else{
