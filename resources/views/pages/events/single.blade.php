@@ -121,4 +121,33 @@
                 </div>
             </div>
      </div>
+
+
+    <script>
+        const socket = io("https://sorutahtasi.com:5222", { transports : ['websocket'] });
+
+        socket.on('event-{{ $event->id }}', function (data) {
+            var item = $('<div class="mc-item">' +
+                '<div class="mci-head">' +
+                '<span>💬 &nbsp;</span>' +
+                '<span>'+ data["date"] +' '+ data["sender_name"] +' tarafından gönderildi.</span>' +
+                '</div>' +
+                '<div class="mci-context">' +
+                '<span>'+ data["content"] +'</span>' +
+                '</div>' +
+                '<div>').hide().fadeIn(500);
+
+            $('.questions').append(item);
+        });
+
+        socket.emit('send-questions', {
+            "event_id" : 1,
+            "sender_name": "anonim",
+            "date" : "az önce",
+            "content" : " ?"
+        });
+
+
+    </script>
+
 </x-app-layout>

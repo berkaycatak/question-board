@@ -7,6 +7,8 @@ use App\Models\Event;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use Auth;
+use ElephantIO\Client;
+use ElephantIO\Engine\SocketIO\Version2X;
 
 class QuestionsController extends Controller
 {
@@ -29,6 +31,21 @@ class QuestionsController extends Controller
 
         $save = $question->save();
         if ($save){
+            $client = new Client(new Version2X('https://sorutahtasi.com:5222', [
+                'headers' => [
+                    'X-My-Header: websocket rocks',
+                    'Authorization: Bearer 12b3c4d5e6f7g8h9i'
+                ]
+            ]));
+
+            $client->initialize();
+            $client->emit('event-1', [
+                "event_id" => $question->event_id,
+                "sender_name" => "anonim",
+                "date" => "az önce",
+                "content" => $request->question
+            ]);
+            $client->close();
             return redirect()->route('event.show', $id)->withSuccess('Sorunuz başarıyla gönderildi.');
         }else{
             return redirect()->route('event.show', $id)->withError('Sorunuz gönderilirken bir problem yaşandı.');
