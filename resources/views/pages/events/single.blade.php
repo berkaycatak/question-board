@@ -9,7 +9,7 @@
 
             <div class="main-header-specs">
                 <div class="mhs-item" style="display: flex;">
-                    <img class="ecs-item" height="25" width="25" style="border-radius: 50%;" src="{{ $event->user_profile_photo_path == null ? 'https://ui-avatars.com/api/?name='. $event->user_name : '/storage/'.$event->user_profile_photo_path }}" alt="{{ $event->user_name }}">
+                    <img class="ecs-item" height="25" width="25" style="border-radius: 50%;" src="{{ $event->user_profile_photo_path == null ? 'https://ui-avatars.com/api/?name='. $event->user_name : ''.$event->user_profile_photo_path }}" alt="{{ $event->user_name }}">
                     <span class="ecs-item-text" style="margin-left: 5px;">{{ $event->user_name }}</span>
                 </div>
                 <div class="mhs-item">
