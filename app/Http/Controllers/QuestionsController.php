@@ -22,7 +22,6 @@ class QuestionsController extends Controller
         // Make and decode POST request:
         $recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response);
         $recaptcha = json_decode($recaptcha);
-        dd($recaptcha);
         // Take action based on the score returned:
         if (isset($recaptcha->score))
         {
