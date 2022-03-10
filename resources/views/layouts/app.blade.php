@@ -23,6 +23,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
         <meta name="yandex-verification" content="f093c89ba5a445d4" />
         <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script src='https://www.google.com/recaptcha/api.js?render=6LePzMweAAAAAFvu5sGRLlp7EeFoPi6VAMBdZjRC'></script>
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-JGS5TSLP9F"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
@@ -91,6 +92,15 @@
         @isset($js)
             {{ $js }}
         @endif
+
+        <script>
+            grecaptcha.ready(function() {
+                grecaptcha.execute('6LePzMweAAAAAFvu5sGRLlp7EeFoPi6VAMBdZjRC', {action: 'submit'}).then(function(token) {
+                    var recaptchaCevabi = document.getElementById('recaptchaCevabi');
+                    recaptchaCevabi.value = token;
+                });
+            });
+        </script>
     </body>
     @stack('modals')
 

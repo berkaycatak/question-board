@@ -13,42 +13,64 @@ use ElephantIO\Engine\SocketIO\Version2X;
 class QuestionsController extends Controller
 {
     public function store(QuestionRequest $request, $id){
-        $question_check = Question::where("question", $request->question)->where("event_id", $id)->count();
-        $sender_name = "anonim";
-        if ($question_check <= 0)
+
+
+        $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
+        $recaptcha_secret = '6LePzMweAAAAANeSyk6_og1vI5-0GzV4Ht8Wh3Ab';
+        $recaptcha_response = $_POST['recaptcha_Cevap'];
+
+        // Make and decode POST request:
+        $recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response);
+        $recaptcha = json_decode($recaptcha);
+        dd($recaptcha);
+        // Take action based on the score returned:
+        if (isset($recaptcha->score))
         {
-            $question = new Question;
-            $question->question = $request->question;
-            $question->event_id = $id;
+            if ($recaptcha->score >= 0.5){
+                $question_check = Question::where("question", $request->question)->where("event_id", $id)->count();
+                $sender_name = "anonim";
+                if ($question_check <= 0)
+                {
+                    $question = new Question;
+                    $question->question = $request->question;
+                    $question->event_id = $id;
 
-            if (isset(Auth::user()->id)){
-                $question->created_user_id = Auth::user()->id;
-                if (isset($request->anonim)){
-                    $question->is_anonim = 1;
-                }else{
-                    $sender_name = Auth::user()->name;
-                    $question->is_anonim = 0;
+                    if (isset(Auth::user()->id)){
+                        $question->created_user_id = Auth::user()->id;
+                        if (isset($request->anonim)){
+                            $question->is_anonim = 1;
+                        }else{
+                            $sender_name = Auth::user()->name;
+                            $question->is_anonim = 0;
+                        }
+                    }else{
+                        $question->is_anonim = 1;
+                    }
+
+
+                    $save = $question->save();
+                    if ($save){
+                        print "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js\" integrity=\"sha512-MgkNs0gNdrnOM7k+0L+wgiRc5aLgl74sJQKbIWegVIMvVGPc1+gc1L2oK9Wf/D9pq58eqIJAxOonYPVE5UwUFA==\" crossorigin=\"anonymous\" referrerpolicy=\"no-referrer\"></script>";
+                        print '<script>const socket2 = io("https://sorutahtasi.com:5222", { transports : [\'websocket\'] });</script>';
+                        print '<script>socket2.emit("send-questions", { "event_id" : '. $question->event_id .', "sender_name": "'. $sender_name .'", "date" : "az önce", "content" : "'. $question->question .'" });</script>';
+                        print view('layouts.redirect.question')->render();
+                        sleep(1);
+                        return redirect()->route('event.show', $id)->withSuccess('Sorunuz başarıyla gönderildi.');
+                    }else{
+                        return redirect()->route('event.show', $id)->withError('Sorunuz gönderilirken bir problem yaşandı.');
+                    }
                 }
-            }else{
-                $question->is_anonim = 1;
+                else
+                {
+                    return redirect()->route('event.show', $id)->withError('Daha önce aynı soru gönderilmiş.');
+                }
             }
-
-
-            $save = $question->save();
-            if ($save){
-                print "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js\" integrity=\"sha512-MgkNs0gNdrnOM7k+0L+wgiRc5aLgl74sJQKbIWegVIMvVGPc1+gc1L2oK9Wf/D9pq58eqIJAxOonYPVE5UwUFA==\" crossorigin=\"anonymous\" referrerpolicy=\"no-referrer\"></script>";
-                print '<script>const socket2 = io("https://sorutahtasi.com:5222", { transports : [\'websocket\'] });</script>';
-                print '<script>socket2.emit("send-questions", { "event_id" : '. $question->event_id .', "sender_name": "'. $sender_name .'", "date" : "az önce", "content" : "'. $question->question .'" });</script>';
-                print view('layouts.redirect.question')->render();
-                sleep(1);
-                return redirect()->route('event.show', $id)->withSuccess('Sorunuz başarıyla gönderildi.');
-            }else{
-                return redirect()->route('event.show', $id)->withError('Sorunuz gönderilirken bir problem yaşandı.');
+            else {
+                return redirect()->route('event.show', $id)->withError('Google robot olduğunuzu düşünüyor. Bu nedenle sorunuzu gönderemedik.');
             }
         }
-        else
-        {
-            return redirect()->route('event.show', $id)->withError('Daha önce aynı soru gönderilmiş.');
+        else {
+            return redirect()->route('event.show', $id)->withError('Google robot olduğunuzu düşünüyor. Bu nedenle sorunuzu gönderemedik.');
         }
     }
 

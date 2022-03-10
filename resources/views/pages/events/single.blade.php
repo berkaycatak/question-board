@@ -52,7 +52,7 @@
                         <input id="anonim" name="anonim" type="checkbox" @if($get_question->is_anonim == 1) checked @endif>
                         <label for="anonim">İsmim görünmesin</label>
                     </div>
-
+                    <input type="hidden" name="recaptcha_Cevap" id="recaptchaCevabi">
                     <input type="submit" value="Kaydet">
                 </form>
             @else
@@ -69,6 +69,7 @@
                     @else
                         <a href="{{ route('register') }}" style="color: black; margin-top: 10px;">Kayıt olarak isimli sor.</a>
                     @endif
+                    <input type="hidden" name="recaptcha_Cevap" id="recaptchaCevabi">
                     <input type="submit" value="Gönder">
                 </form>
             @endif
