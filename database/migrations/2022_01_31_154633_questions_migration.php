@@ -18,8 +18,9 @@ class QuestionsMigration extends Migration
             $table->longText('question');
             $table->bigInteger('event_id');
             $table->bigInteger('created_user_id')->nullable()->default(null);
-            $table->bigInteger('is_anonim')->default(1);
-            $table->bigInteger('is_answered')->default(0);
+            $table->tinyInteger('is_anonim')->default(1);
+            $table->tinyInteger('is_answered')->default(0);
+            $table->tinyInteger('is_live')->default(1);
             $table->timestamps();
         });
     }
