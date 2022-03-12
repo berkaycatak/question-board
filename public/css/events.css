@@ -263,15 +263,18 @@ form > input[type=date]{
     margin-right: 6px;
 }
 
-.is-answered-text{
-    color: #ffffffe6!important;
-    opacity: 1!important;
-}
-
 .is-answered{
     background: #00b100;
     border-radius: 4px;
     padding: 7px;
+}
+
+.is-answered .question-text {
+    color: white!important;
+}
+.is-answered .question-top-text {
+    color: white!important;
+    opacity: 1!important;
 }
 
 @media only screen and (max-width: 1000px) {
