@@ -33,8 +33,8 @@ class QuestionsController extends Controller
             $question->event_id = $id;
 
             if (isset($recaptcha->score)) {
-                if ($recaptcha->score >= 0.5) {
-                    $question->is_live = 0;
+                if ($recaptcha->score <= 0.4) {
+                    $question->is_live = 1;
                 }
             } else {
                 $question->is_live = 0;
