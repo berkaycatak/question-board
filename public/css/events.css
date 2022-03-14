@@ -258,9 +258,28 @@ form > input[type=date]{
     width: 100%;
 }
 
+.vote .question-text {
+    padding: 6px;
+    border-radius: 9px;
+    border: 1px solid #dedede;
+    font-size: 12px;
+}
+
+.is-answered .vote .question-text {
+    border: 1px solid #595959;
+}
+
 .mcr-content .checkbox input[type="checkbox"] {
     margin-top: 4px;
     margin-right: 6px;
+}
+
+.is-answered .question-text.selected {
+    background: #029702;
+}
+
+.question-text.selected {
+    background: #efeff4;
 }
 
 .is-answered{

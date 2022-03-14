@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\VotesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\QuestionsController;
@@ -27,6 +28,6 @@ Route::post('/events/{event_id}/update/{question_id}', [QuestionsController::cla
 Route::get('/events/{event_id}/edit/{question_id}', [QuestionsController::class, 'edit'])->name('question_edit');
 Route::get('/events/{event_id}/delete/{question_id}', [QuestionsController::class, 'delete'])->name('question_delete');
 
-
+Route::get('/api/vote', [VotesController::class, 'vote']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
