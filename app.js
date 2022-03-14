@@ -35,9 +35,13 @@ io.on('connection', function(socket) {
     console.log('new connection');
 
     socket.on('send-questions', function(data) {
-        console.log(data);
-        io.emit('event1', data);
+        io.emit('event-' + data["event_id"], data);
     });
+
+    socket.on('send-vote', function(data) {
+        io.emit('vote-event-' + data["event_id"], data);
+    });
+
 });
 
 server.listen(serverPort, function() {
