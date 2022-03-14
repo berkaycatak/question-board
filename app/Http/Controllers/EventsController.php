@@ -63,14 +63,24 @@ class EventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Request $request)
     {
         $event = Event::join('users', 'users.id', 'events.created_user_id')
             ->select('users.id as user_id', 'users.name as user_name', 'users.profile_photo_path as user_profile_photo_path',  'events.*')
             ->where('events.id', $id)
             ->first() ?? abort(404);
 
-        $questions = Question::where('questions.event_id', $id)->where('is_live', 1)->get();
+        $questions = Question::where('questions.event_id', $id)
+            ->where('is_live', 1);
+        if (isset($request->filter))
+        {
+            if ($request->filter == "once_eski")
+                $questions = $questions->orderBy("id", "ASC");
+            else if ($request->filter == "once_yeni")
+                $questions = $questions->orderBy("id", "DESC");
+        }
+        $questions = $questions->get();
+
 
         return view('pages.events.single', compact('event', 'questions'));
     }

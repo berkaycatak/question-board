@@ -63,3 +63,7 @@ function vote(question_id, type, element, event_id) {
         }
     });
 }
+
+function setFilter(element) {
+    window.location.href = "?filter=" + element.value;
+}

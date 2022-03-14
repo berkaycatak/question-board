@@ -74,6 +74,12 @@
                 </form>
             @endif
             <label class="questions-title">🤔 Sorular</label>
+            <form>
+                <select onchange="setFilter(this)" name="filter" id="filter">
+                    <option {{ app('request')->input('filter') == "once_eski" ? "selected" : "" }} value="once_eski">Tarihe Göre (Önce Eski)</option>
+                    <option {{ app('request')->input('filter') == "once_yeni" ? "selected" : "" }} value="once_yeni">Tarihe Göre (Önce Yeni)</option>
+                </select>
+            </form>
             <div class="main-content">
                 <div class="questions">
                     @if(count($questions) > 0)

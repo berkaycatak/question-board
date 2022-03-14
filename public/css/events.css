@@ -107,6 +107,7 @@ hr {
 .questions-title{
     font-size: 23px;
     margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 .mci-actions {
@@ -301,6 +302,10 @@ form > input[type=date]{
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
+    }
+
+    #filter{
+        width: 100%;
     }
 
     .event-card-spec{
