@@ -94,7 +94,7 @@
                                     @else
                                         @php($sender_name = "anonim")
                                     @endif
-                                    <span class="question-top-text"> {{ timeConvert($question->created_at) }} {{ $sender_name }} tarafından gönderildi.</span>
+                                    <span class="question-top-text"> {{ timeConvert($question->created_at) }} <strong>{{ $sender_name }}</strong> tarafından gönderildi.</span>
                                 </div>
                                 <div class="mci-context">
                                     <span class="question-text">{{ $question->question }}</span>
