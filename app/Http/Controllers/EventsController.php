@@ -79,6 +79,8 @@ class EventsController extends Controller
                 $questions = $questions->orderBy("created_at", "ASC");
             else if ($request->filter == "once_yeni")
                 $questions = $questions->orderBy("created_at", "DESC");
+        }else{
+            $questions = $questions->orderBy("created_at", "ASC");
         }
         $questions = $questions->get();
 
