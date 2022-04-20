@@ -130,10 +130,10 @@ hr {
     degisti
      */
     color: white;
+    background: #db4537;
     min-width: 300px!important;
     margin-top: 0.4vh;
     margin-bottom: 2vh;
-    background: ghostwhite;
     padding: 10px;
     border-radius: 10px;
     /* max-width: fit-content; */
