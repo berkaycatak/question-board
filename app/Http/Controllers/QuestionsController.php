@@ -156,6 +156,8 @@ class QuestionsController extends Controller
 
 
     public function edit($event_id, $question_id){
+        $colors = ["#4285F4", "#DB4437", "#F4B400", "#0F9D58"];
+
         if (isset(Auth::user()->id)){
             $event = Event::join('users', 'users.id', 'events.created_user_id')
                     ->select('users.id as user_id', 'users.name as user_name', 'users.profile_photo_path as user_profile_photo_path',  'events.*')
@@ -166,7 +168,7 @@ class QuestionsController extends Controller
 
             $get_question = Question::find($question_id) ?? abort(404);
             if ($get_question->created_user_id == Auth::user()->id || Auth::user()->admin == 1){
-                return view('pages.events.single', compact('event', "questions", "get_question"));
+                return view('pages.events.single', compact('event', "questions", "get_question", "colors"));
             }else{
                 return redirect()->route('event.show', $event->id)->withError("Yetkilendirme hatası");
             }
