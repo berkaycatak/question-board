@@ -292,7 +292,7 @@ form > input[type=date]{
     DEGİSTİ
     background: #029702;
      */
-    background: #273238!important;
+    background: #232c23!important;
 }
 
 .question-text.selected {
@@ -305,7 +305,11 @@ form > input[type=date]{
 }
 
 .is-answered{
+    /*
     background: #00b100;
+    DEGİSTİ
+     */
+    background: #232c23!important;
     border-radius: 4px;
     padding: 7px;
 }
