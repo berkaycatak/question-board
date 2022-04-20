@@ -288,7 +288,12 @@ form > input[type=date]{
 }
 
 .question-text.selected {
+    /*
+    degisti
     background: #efeff4;
+     */
+    background: #ffffff;
+    color: black!important;
 }
 
 .is-answered{
