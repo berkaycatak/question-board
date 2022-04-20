@@ -70,6 +70,7 @@ class EventsController extends Controller
             ->where('events.id', $id)
             ->first() ?? abort(404);
 
+        $colors = ["#4285F4", "#DB4437", "#F4B400", "#0F9D58"];
         $questions = Question::where('questions.event_id', $id)
             ->where('is_live', 1);
         if (isset($request->filter))
@@ -82,7 +83,7 @@ class EventsController extends Controller
         $questions = $questions->get();
 
 
-        return view('pages.events.single', compact('event', 'questions'));
+        return view('pages.events.single', compact('event', 'questions', "colors"));
     }
 
     /**

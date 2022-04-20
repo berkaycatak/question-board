@@ -127,7 +127,9 @@ hr {
     /*
     margin-top: 0.4vh;
     margin-bottom: 2vh;
+    degisti
      */
+    color: white;
     min-width: 300px!important;
     margin-top: 0.4vh;
     margin-bottom: 2vh;
@@ -213,7 +215,10 @@ form > input[type=text] {
 
 form > input[type=submit] {
     margin-top: 1vh;
-    background-color: black;
+    /* degisti
+        background-color: black;
+     */
+    background: #4783ee;
     border-radius: 30px;
     min-height: 40px;
     height: 4vh;

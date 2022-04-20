@@ -84,8 +84,9 @@
                 <div class="questions">
                     @if(count($questions) > 0)
                         @php($counter = 0)
+                        @php($color_counter = 0)
                         @foreach($questions as $question)
-                            <div class="mc-item @if($question->is_answered) is-answered @endif" id="question-{{ $question->id }}">
+                            <div class="mc-item @if($question->is_answered) is-answered @endif" id="question-{{ $question->id }}" style="background: {{ $colors[$color_counter] }};">
                                 <div class="mci-head">
                                     <span id="question-icon-{{ $question->id }}">{{ $question->is_answered ? '✅' : '💬'}} &nbsp;</span>
                                     @if($question->created_user_id != null && $question->is_anonim == 0)
@@ -126,6 +127,7 @@
                                 </div>
                             </div>
                             @php($counter++)
+                            @php($color_counter == 3 ? $color_counter = 0 : $color_counter++)
                         @endforeach
                     @else
                         <span class="no-question">
