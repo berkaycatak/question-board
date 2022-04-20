@@ -288,7 +288,11 @@ form > input[type=date]{
 }
 
 .is-answered .question-text.selected {
+    /*
+    DEGİSTİ
     background: #029702;
+     */
+    background: #273238!important;
 }
 
 .question-text.selected {
