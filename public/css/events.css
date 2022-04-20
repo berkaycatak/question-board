@@ -96,7 +96,11 @@ hr {
 }
 
 .mci-context small {
+    /*
+    degisti
     color: #787878;
+     */
+    color: #dddddd;
     border-top: 1px solid #c3c3c340;
     margin-top: 10px;
     padding-top: 5px;
