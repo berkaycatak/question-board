@@ -76,9 +76,9 @@ class EventsController extends Controller
         if (isset($request->filter))
         {
             if ($request->filter == "once_eski")
-                $questions = $questions->orderBy("id", "ASC");
+                $questions = $questions->orderBy("created_at", "ASC");
             else if ($request->filter == "once_yeni")
-                $questions = $questions->orderBy("id", "DESC");
+                $questions = $questions->orderBy("created_at", "DESC");
         }
         $questions = $questions->get();
 
