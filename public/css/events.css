@@ -82,7 +82,11 @@ hr {
 }
 
 .mci-head > span:nth-child(2), .mci-head > span:nth-child(3) {
+    /*
+    degisti
     opacity: 0.21;
+     */
+    opacity: 0.8;
 }
 
 .mci-context {
@@ -159,7 +163,6 @@ hr {
     max-width: 600px;
     /*
     border-bottom: 1px solid rgba(128, 128, 128, 0.082);
-
      */
 }
 
