@@ -38,10 +38,10 @@ class QuestionsController extends Controller
                 }
                 else
                 {
-                    $question->is_live = 0;
+                    $question->is_live = 1; //0
                 }
             } else {
-                $question->is_live = 0;
+                $question->is_live = 1; //0
             }
 
             if (isset(Auth::user()->id)) {
