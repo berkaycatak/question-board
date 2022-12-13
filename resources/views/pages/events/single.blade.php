@@ -59,7 +59,9 @@
                 <form class="mcr-content add-question-form" method="POST" action="{{ route('question_store', $event->id) }}">
                     @csrf
                     <label for="addquestion">💬 Soru Ekle</label>
-                    <textarea required name="question" id="addquestion" rows="1"></textarea>
+
+
+                    <textarea required name="question" id="addquestion" rows="1" style="border-radius: 7px;border: 1px solid #dadada!important;"></textarea>
 
                     @if(isset(Auth::user()->id))
                         <div class="checkbox">
@@ -67,7 +69,10 @@
                             <label for="anonim">İsmim görünmesin</label>
                         </div>
                     @else
-                        <a href="{{ route('register') }}" style="color: black; margin-top: 10px;">Kayıt olarak isimli sor.</a>
+                    <div class="checkbox">
+                        <input placeholder="İsminiz" id="name" name="name" type="text" style="border-radius: 7px;border: 1px solid #dadada;">
+                    </div>
+                        <!--<a href="{{ route('register') }}" style="color: black; margin-top: 10px;">Kayıt olarak isimli sor.</a>-->
                     @endif
                     <input type="hidden" name="recaptcha_Cevap" id="recaptchaCevabi">
                     <input type="submit" value="Gönder">
@@ -94,7 +99,11 @@
                                     @if($question->created_user_id != null && $question->is_anonim == 0)
                                         @php($sender_name = DB::table('users')->where('id', $question->created_user_id)->select('name')->first()->name)
                                     @else
-                                        @php($sender_name = "anonim")
+                                        @if($question->name != null)
+                                            @php($sender_name = $question->name)
+                                        @else
+                                            @php($sender_name = "anonim")
+                                        @endif
                                     @endif
                                     <span class="question-top-text"> {{ timeConvert($question->created_at) }} <strong>{{ $sender_name }}</strong> tarafından gönderildi.</span>
                                 </div>

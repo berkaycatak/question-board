@@ -27,6 +27,9 @@ class QuestionsController extends Controller
         $sender_name = "anonim";
         if ($question_check <= 0) {
             $question = new Question;
+            if ($request->has("name")){
+                $question->name = $request->name;
+            }
             $question->question = $request->question;
             $question->event_id = $id;
 
