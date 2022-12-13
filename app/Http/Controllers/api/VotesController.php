@@ -30,6 +30,7 @@ class VotesController extends Controller
         else
         {
             $vote_action = new Vote();
+            $vote_action->event_id = $request->event_id;
             $vote_action->question_id = $request->question_id;
             $vote_action->user_id = $user_id;
             $vote_action->action_type = $request->type;

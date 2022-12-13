@@ -12,9 +12,8 @@ use ElephantIO\Engine\SocketIO\Version2X;
 
 class QuestionsController extends Controller
 {
-    public function store(QuestionRequest $request, $id){
-
-
+    public function store(QuestionRequest $request, $id)
+    {
         $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
         $recaptcha_secret = '6LePzMweAAAAANeSyk6_og1vI5-0GzV4Ht8Wh3Ab';
         $recaptcha_response = $_POST['recaptcha_Cevap'];
@@ -153,7 +152,6 @@ class QuestionsController extends Controller
             return redirect()->route('event.show', $event_id)->withError('Yetkilendirme hatası.');
         }
     }
-
 
     public function edit($event_id, $question_id){
         $colors = ["#4285F4", "#DB4437", "#F4B400", "#0F9D58"];

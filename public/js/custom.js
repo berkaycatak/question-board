@@ -29,7 +29,8 @@ function vote(question_id, type, element, event_id) {
     element =  $("#" + element.id);
     values = {
         "question_id" : question_id,
-        "type" : type
+        "type" : type,
+        "event_id" : event_id,
     }
 
     $.ajax({

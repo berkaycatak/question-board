@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Main\Event\EventRequest;
 use App\Models\Event;
 use App\Models\Question;
+use App\Models\Vote;
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 class EventsController extends Controller
 {
@@ -76,13 +79,69 @@ class EventsController extends Controller
         if (isset($request->filter))
         {
             if ($request->filter == "once_eski")
+            {
                 $questions = $questions->orderBy("created_at", "ASC");
+            }
             else if ($request->filter == "once_yeni")
+            {
                 $questions = $questions->orderBy("created_at", "DESC");
-        }else{
+            }
+            else if ($request->filter == "puan_en_cok")
+            {
+                $questions = Vote::where("votes.event_id", $id)
+                    ->where("questions.is_live", 1)
+                    ->select('questions.*', 'votes.question_id', DB::raw('count(*) as total'))
+                    ->groupBy('votes.question_id')
+                    ->leftJoin("questions", "questions.id", "votes.question_id")
+                    ->orderBy('total', 'desc');
+
+                $array = [];
+                foreach ($questions->get() as $question){
+                    $array[] = $question->id;
+                }
+
+                $_questions = Question::where("event_id", $id)
+                    ->where("questions.is_live", 1)
+                    ->whereNotIn("id",
+                        $array
+                    )->get();
+
+                $questions = $questions->get();
+                $questions->push(...$_questions);
+            }
+            else if ($request->filter == "puan_en_az")
+            {
+                $questions = Vote::where("votes.event_id", $id)
+                    ->where("questions.is_live", 1)
+                    ->select('questions.*', 'votes.question_id', DB::raw('count(*) as total'))
+                    ->groupBy('votes.question_id')
+                    ->leftJoin("questions", "questions.id", "votes.question_id")
+                    ->orderBy('total', 'asc');
+
+                $array = [];
+                foreach ($questions->get() as $question){
+                    $array[] = $question->id;
+                }
+
+                $_questions = Question::where("event_id", $id)
+                    ->where("questions.is_live", 1)
+                    ->whereNotIn("id",
+                        $array
+                    )->get();
+
+                $questions = $questions->get();
+                $_questions->push(...$questions);
+                $questions = $_questions;
+            }
+        }
+        else
+        {
             $questions = $questions->orderBy("created_at", "ASC");
         }
-        $questions = $questions->get();
+
+        if (!$questions instanceof Collection){
+            $questions = $questions->get();
+        }
 
 
         return view('pages.events.single', compact('event', 'questions', "colors"));

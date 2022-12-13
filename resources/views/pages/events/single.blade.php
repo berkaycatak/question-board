@@ -78,6 +78,8 @@
                 <select onchange="setFilter(this)" name="filter" id="filter">
                     <option {{ app('request')->input('filter') == "once_eski" ? "selected" : "" }} value="once_eski">Tarihe Göre (Önce Eski)</option>
                     <option {{ app('request')->input('filter') == "once_yeni" ? "selected" : "" }} value="once_yeni">Tarihe Göre (Önce Yeni)</option>
+                    <option {{ app('request')->input('filter') == "puan_en_cok" ? "selected" : "" }} value="puan_en_cok">Puana Göre (Önce En Yüksek)</option>
+                    <option {{ app('request')->input('filter') == "puan_en_az" ? "selected" : "" }} value="puan_en_az">Puana Göre (Önce En Düşük)</option>
                 </select>
             </form>
             <div class="main-content">
