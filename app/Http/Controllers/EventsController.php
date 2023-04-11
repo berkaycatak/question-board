@@ -182,7 +182,6 @@ class EventsController extends Controller
         }else{
             return redirect()->route('event.edit', $id)->withSuccess('Etkinlik detayları düzenlenirken bir hata oluştu.');
         }
-
     }
 
     /**

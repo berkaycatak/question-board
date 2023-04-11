@@ -1,6 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\Mobile\Auth\AuthController;
+use App\Http\Controllers\Api\Mobile\Event\EventController;
+use App\Http\Controllers\Api\Mobile\Question\QuestionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +16,37 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post("/login", [AuthController::class, "login"]);
+Route::post("/register", [AuthController::class, "register"]);
+
+
+
+Route::middleware('auth:sanctum')->post('/question/create/{id}', [QuestionController::class, "store"]);
+Route::middleware('guest')->post('/question/anon_create/{id}', [QuestionController::class, "store"]);
+
+Route::middleware('auth:sanctum')->post('/question/vote/{id}', [QuestionController::class, "vote"]);
+Route::middleware('guest')->post('/question/anon_vote/{id}', [QuestionController::class, "vote"]);
+
+
+Route::group(["middleware" => ["auth:sanctum"]], function(){
+
+    Route::prefix('event')->group(function () {
+        Route::post("/create", [EventController::class, "store"]);
+        Route::post("/update/{id}", [EventController::class, "update"]);
+        Route::post("/delete/{id}", [EventController::class, "delete"]);
+    });
+
+    Route::prefix('question')->group(function () {
+        Route::post("/answered/{event_id}/{question_id}", [QuestionController::class, "answered"]);
+    });
+});
+
+Route::group(["middleware" => ["auth:sanctum", "guest"]], function() {
+
+    Route::prefix('event')->group(function () {
+        Route::post("/list", [EventController::class, "list"]);
+        Route::post("/show/{id}", [EventController::class, "show"]);
+    });
+
+    Route::post("/logout", [AuthController::class, "logout"]);
 });

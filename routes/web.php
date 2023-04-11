@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\api\VotesController;
+use App\Http\Controllers\Api\VotesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\QuestionsController;
