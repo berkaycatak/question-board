@@ -41,6 +41,8 @@ Route::group(["middleware" => ["auth:sanctum"]], function(){
     Route::prefix('question')->group(function () {
         Route::post("/answered/{event_id}/{question_id}", [QuestionController::class, "answered"]);
     });
+
+    Route::post("/logout", [AuthController::class, "logout"]);
 });
 
 Route::group(["middleware" => ["auth:sanctum", "guest"]], function() {
@@ -50,5 +52,4 @@ Route::group(["middleware" => ["auth:sanctum", "guest"]], function() {
         Route::post("/show/{id}", [EventController::class, "show"]);
     });
 
-    Route::post("/logout", [AuthController::class, "logout"]);
 });
