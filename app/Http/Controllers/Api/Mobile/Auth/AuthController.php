@@ -17,10 +17,10 @@ class AuthController extends Controller
         $user = User::where("email", $request->email)->first();
         if (!$user || !Hash::check($request->password, $user->password))
         {
-            return response([
+            return [
                 "status" => 0,
                 "errors" => "Kullanıcı adı veya şifre hatalı."
-            ], 401);
+            ];
         }
 
         $token = $user->createToken("app_token")->plainTextToken;
@@ -44,7 +44,7 @@ class AuthController extends Controller
             "token" => $token,
         ];
 
-        return response($response, 201);
+        return $response;
     }
 
 
@@ -71,21 +71,21 @@ class AuthController extends Controller
             }
             else
             {
-                return response([
+                return [
                     "status" => 0,
                     "errors" => "Kayıt işlemi sırasında hata oluştu",
-                ], 401);
+                ];
             }
         }
         else
         {
-            return response([
+            return [
                 "status" => 0,
                 "errors" => "Kayıt işlemi sırasında hata oluştu",
-            ], 401);
+            ];
         }
 
-        return response($response, 201);
+        return $response;
     }
 
     public function logout(Request $request)
