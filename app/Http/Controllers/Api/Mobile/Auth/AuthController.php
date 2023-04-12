@@ -8,6 +8,7 @@ use App\Http\Requests\Api\Auth\AuthRegisterRequest;
 use App\Models\User;
 use App\Models\UserDevices;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -96,4 +97,33 @@ class AuthController extends Controller
             "errors" => "Başarıyla çıkış yapıldı",
         ];
     }
+
+    public function loginCheck(Request $request)
+    {
+        $token = Auth::user()->createToken("app_token")->plainTextToken;
+        $token_id = explode("|", $token)[0];
+        Auth()->user()->tokens()->where("id", "!=", $token_id)->delete();
+
+        if ($request->has('playerId'))
+        {
+            $player_id = UserDevices::updateOrCreate(
+                [
+                    'player_id' => $request->playerId
+                ],
+                [
+                    'user_id' => Auth::user()->id,
+                    'player_id' => $request->playerId
+                ]
+            );
+        }
+
+        $response = [
+            "status" => 1,
+            "user" => Auth()->user(),
+            "token" => $token,
+        ];
+
+        return $response;
+    }
+
 }

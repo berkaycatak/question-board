@@ -30,6 +30,8 @@ Route::middleware('guest')->post('/question/anon_vote/{id}', [QuestionController
 
 Route::group(["middleware" => ["auth:sanctum"]], function(){
 
+    Route::post("/splash", [AuthController::class, "loginCheck"]);
+
     Route::prefix('event')->group(function () {
         Route::post("/create", [EventController::class, "store"]);
         Route::post("/update/{id}", [EventController::class, "update"]);
