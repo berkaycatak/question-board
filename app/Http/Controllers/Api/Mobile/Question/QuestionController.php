@@ -89,9 +89,16 @@ class QuestionController
             $save = $question->save();
             if ($save)
             {
+                $_question = Question::with(
+                    'user',
+                    'votes',
+                )
+                ->find($question->id);
+
                 return [
                     "status" => 1,
-                    "message" => "Soru başarıyla gönderildi."
+                    "message" => "Soru başarıyla gönderildi.",
+                    "question" => $_question
                 ];
             }
         }catch (Exception $exception){
