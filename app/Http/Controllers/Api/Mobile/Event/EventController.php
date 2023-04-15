@@ -39,6 +39,7 @@ class EventController extends Controller
                     "questions",
                     'questions.user',
                     'questions.votes',
+                    'questions.event',
                 )
                 ->find($id);
 
