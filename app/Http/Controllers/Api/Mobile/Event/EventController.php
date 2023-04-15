@@ -38,8 +38,7 @@ class EventController extends Controller
             'creator_user',
                     "questions",
                     'questions.user',
-                    'questions.votes',
-                    'questions.event',
+                    'questions.votes'
                 )
                 ->find($id);
 
