@@ -132,7 +132,9 @@
                                 <div class="mci-head">
                                     <div class="vote">
                                         @php($user_id = Auth::check() ? Auth::user()->id : Request::ip())
-                                        <span onclick="vote({{ $question->id }}, 1, this, {{ $event->id }})" id="positive-vote-{{ $question->id }}" class="question-text {{ DB::table('votes')->where('question_id', $question->id)->where('action_type', 1)->where('user_id', $user_id)->count() > 0 ? 'selected' : ''}}">+ {{ DB::table('votes')->where('question_id', $question->id)->where('action_type', 1)->count() }}</span>
+                                        <span onclick="vote({{ $question->id }}, 1, this, {{ $event->id }})" id="positive-vote-{{ $question->id }}" class="question-text {{ DB::table('votes')->where('question_id', $question->id)->where('action_type', 1)->where('user_id', $user_id)->count() > 0 ? 'selected' : ''}}">
+                                            + {{ DB::table('votes')->where('question_id', $question->id)->where('action_type', 1)->count() }}
+                                        </span>
                                         <!--<span onclick="vote({{ $question->id }}, 2, this, {{ $event->id }})" id="negative-vote-{{ $question->id }}" class="question-text {{ DB::table('votes')->where('question_id', $question->id)->where('action_type', 2)->where('user_id', $user_id)->count() > 0 ? 'selected' : ''}}">- {{ DB::table('votes')->where('question_id', $question->id)->where('action_type', 2)->count() }}</span>-->
                                     </div>
                                 </div>

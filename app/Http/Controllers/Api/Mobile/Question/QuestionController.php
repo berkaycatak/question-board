@@ -145,6 +145,7 @@ class QuestionController
                 return [
                     "status" => 1,
                     "count" => $vote_count,
+                    "vote" => $vote_action,
                     "message" => "İşlem başarıyla gerçekleştirildi."
                 ];
             }
