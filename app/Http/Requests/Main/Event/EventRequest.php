@@ -35,12 +35,12 @@ class EventRequest extends FormRequest
     public function attributes()
     {
         return [
-            'name' => 'adı',
-            'time' => 'saati',
-            'description' => 'konusu',
-            'adress' => 'adresi',
-            'date' => 'tarihi',
-            'today' => 'bugünün tarihi'
+            'name' => 'Etkinlik Adı',
+            'time' => 'Etkinlik Saati',
+            'description' => 'Etkinlik Konusu',
+            'adress' => 'Etkinlik Adresi',
+            'date' => 'Etkinlik Tarihi',
+            'today' => 'Bugünün tarihi'
         ];
     }
 
