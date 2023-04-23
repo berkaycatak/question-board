@@ -55,7 +55,7 @@ class EventController extends Controller
         }
     }
 
-    public function store(EventRequest $request){
+    public function store(Request $request){
         try {
             $event = new Event();
             $event->name = $request->name;
@@ -81,7 +81,7 @@ class EventController extends Controller
         }
     }
 
-    public function update($id, EventRequest $request){
+    public function update($id, Request $request){
         try {
             $event = Event::find($id) ?? false;
             if (is_bool($event))
