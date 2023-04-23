@@ -27,6 +27,8 @@ Route::middleware('guest')->post('/question/anon_create/{id}', [QuestionControll
 Route::middleware('auth:sanctum')->post('/question/vote/{id}', [QuestionController::class, "vote"]);
 Route::middleware('guest')->post('/question/anon_vote/{id}', [QuestionController::class, "vote"]);
 
+Route::post("/question/report/{event_id}/{question_id}", [QuestionController::class, "report"]);
+
 Route::prefix('anon-event')->group(function () {
     Route::post("/list", [EventController::class, "list"]);
     Route::post("/show/{id}", [EventController::class, "show"]);

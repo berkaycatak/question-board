@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Mobile\Question;
 use App\Http\Requests\Main\Question\QuestionRequest;
 use App\Models\Event;
 use App\Models\Question;
+use App\Models\Report;
 use App\Models\Vote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,6 +44,37 @@ class QuestionController
                 return [
                     "status" => 1,
                     "message" => "Soru $response_text olarak işaretlendi."
+                ];
+            }
+
+        }catch (\Exception $exception){
+            return [
+                "status" => 0,
+                "errors" => $exception->getMessage()
+            ];
+        }
+    }
+
+    public function report($event_id, $question_id){
+        try {
+            $event = Event::find($event_id) ?? false;
+            if (is_bool($event))
+                throw new \Exception("Bir hata meydana geldi");
+
+            $question = Question::find($question_id);
+
+            if ($question == null)
+                throw new \Exception("Bir hata meydana geldi");
+
+            $report = new Report();
+            $report->type = 2;
+            $report->target_id = $question->id;
+            $save = $report->save();
+
+            if ($save){
+                return [
+                    "status" => 1,
+                    "message" => "Soru başarıyla şikayet edildi."
                 ];
             }
 
