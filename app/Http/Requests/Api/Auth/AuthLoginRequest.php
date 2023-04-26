@@ -18,4 +18,13 @@ class AuthLoginRequest extends FormRequest
             "password" => "required|string"
         ];
     }
+
+    public function attributes()
+    {
+        return [
+            'email' => 'E-Posta',
+            'password' => 'Parola'
+        ];
+    }
+
 }

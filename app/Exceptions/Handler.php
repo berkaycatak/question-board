@@ -38,4 +38,22 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    public function render($request, Exception $e){
+        $code = $e->getCode();
+        if(empty($code)){$code = 500;}
+        $message = $e->getMessage();
+        if (stripos($message, 'The given data was invalid') !== false) {
+            $code = 422;
+            $message = print_r($e->validator->failed(),true);
+        }
+        if ($request->expectsJson()) {
+            return response()->json([
+                'error' =>  $message,
+                'message' => $message,
+            ], $code);
+        }
+        return parent::render($request, $e);
+    }
+
 }
