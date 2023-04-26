@@ -46,7 +46,7 @@ class Handler extends ExceptionHandler
         if ($exception instanceof ValidationException && $request->wantsJson()) {
 
             return response()->json([
-                'message' => "Bir hata oluştu.",
+                'message' => "Gönderilen formda hatalar var.",
                 'errors' => $exception->validator->getMessageBag()], 422);
 
         }
