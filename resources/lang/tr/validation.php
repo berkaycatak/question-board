@@ -13,6 +13,8 @@ return [
     |
     */
 
+    'invalid_data' => 'Gönderilen formda hatalar mevcut.',
+
     'accepted' => ':attribute kabul edilmelidir.',
     'active_url' => ':attribute geçerli bir URL olmalıdır.',
     'after' => ':attribute değeri :date tarihinden sonra olmalıdır.',
