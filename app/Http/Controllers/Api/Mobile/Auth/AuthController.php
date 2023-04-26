@@ -94,7 +94,7 @@ class AuthController extends Controller
         auth()->user()->tokens()->delete();
         return [
             "status" => 1,
-            "errors" => "Başarıyla çıkış yapıldı",
+            "message" => "Başarıyla çıkış yapıldı",
         ];
     }
 
