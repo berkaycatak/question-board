@@ -13,7 +13,7 @@
                     <div class="event-details-header" style="display: flex; flex-direction: row; align-items: center; ; width: 60%">
                         <div class="event-details-header-left">
                             <div style="margin-top: 12px;">
-                                <img src="/img/qrcode_sorutahtasi.com.png" width="100">
+                                <img style="height: 120px; width: 120px;" src="/img/qrcode_sorutahtasi.com.png" width="100">
                             </div>
                         </div>
                         <div class="event-details-header-right" style="margin-left: 16px; display: flex; flex-direction: column; justify-content: center;">
@@ -49,6 +49,8 @@
                                     @endif
                                 @endif
                             </div>
+                            <p  style="margin-top: 0px" class="event-description">{{ $event->description }}</p>
+
                         </div>
                     </div>
 
@@ -60,7 +62,6 @@
 
             </div>
 
-            <p class="event-description">{{ $event->description }}</p>
         </div>
 
             @isset($get_question)
@@ -82,7 +83,7 @@
                     <label for="addquestion">💬 Soru Ekle</label>
 
 
-                    <textarea required name="question" id="addquestion" rows="1" style="border-radius: 7px;border: 1px solid #dadada!important;"></textarea>
+                    <textarea required name="question" id="addquestion"  style="border-radius: 7px;border: 1px solid #dadada!important;"></textarea>
 
                     @if(isset(Auth::user()->id))
                         <div class="checkbox">
@@ -99,7 +100,8 @@
                     <input type="submit" value="Gönder">
                 </form>
             @endif
-            <label class="questions-title">🤔 Sorular</label>
+        <br>
+        <label class="questions-title">🤔 Sorular</label>
             <form>
                 <select onchange="setFilter(this)" name="filter" id="filter">
                     <option {{ app('request')->input('filter') == "once_eski" ? "selected" : "" }} value="once_eski">Tarihe Göre (Önce Eski)</option>
