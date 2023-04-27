@@ -2,44 +2,65 @@
     <x-slot name="website_title">{{ $event->name }}</x-slot>
     <x-slot name="website_description">Soru cevap etkinliği {{ $event->name }}. {{ $event->description }}</x-slot>
 
+
+
     <div class="main-header">
-            <h5>✍🏻 SORU TAHTASI</h5>
 
-            <h1>{{ $event->name }}</h1>
-
-            <div class="main-header-specs">
-                <div class="mhs-item" style="display: flex;">
-                    <img class="ecs-item" height="25" width="25" style="border-radius: 50%;" src="{{ $event->user_profile_photo_path == null ? 'https://ui-avatars.com/api/?name='. $event->user_name : ''.$event->user_profile_photo_path }}" alt="{{ $event->user_name }}">
-                    <span class="ecs-item-text" style="margin-left: 5px;">{{ $event->user_name }}</span>
-                </div>
-                <div class="mhs-item">
-                    <span>⏰</span>
-                    <span class="ecs-item-text">{{ $event->time }}</span>
-                </div>
-                <div class="mhs-item">
-                    <span>🗓</span>
-                    <span class="ecs-item-text">{{ $event->date }}</span>
-                </div>
-                @if($event->adress != null)
-                    <div class="mhs-item mt-1">
-                        <div class="ecs-item">
-                            <a target="_blank" href="{{ $event->adress }}">Etkinliğe Katıl</a>
-                        </div>
-                    </div>
-                @endif
-                @isset(Auth::user()->id)
-                    @if($event->created_user_id == Auth::user()->id)
-                        <div class="mhs-item mt-1">
-                            <div class="ecs-item">
-                                <a href="{{ route('event.edit', $event->id) }}">Etkinliği düzenle</a>
+        <div class="row">
+            <div style="width:100%">
+                <h5>✍🏻 SORU TAHTASI</h5>
+                <div style="display: flex">
+                    <div class="event-details-header" style="display: flex; flex-direction: row; align-items: center; ; width: 60%">
+                        <div class="event-details-header-left">
+                            <div style="margin-top: 12px;">
+                                <img src="/img/qrcode_sorutahtasi.com.png" width="100">
                             </div>
                         </div>
-                    @endif
-                @endif
-            </div>
-            <p class="event-description">{{ $event->description }}</p>
+                        <div class="event-details-header-right" style="margin-left: 16px; display: flex; flex-direction: column; justify-content: center;">
+                            <h1 style="font-size: 30px; margin-top: 20px;">{{ $event->name }}</h1>
 
-            <hr>
+                            <div class="main-header-specs">
+                                <div class="mhs-item" style="display: flex;">
+                                    <img class="ecs-item" height="25" width="25" style="border-radius: 50%;" src="{{ $event->user_profile_photo_path == null ? 'https://ui-avatars.com/api/?name='. $event->user_name : ''.$event->user_profile_photo_path }}" alt="{{ $event->user_name }}">
+                                    <span class="ecs-item-text" style="margin-left: 5px;">{{ $event->user_name }}</span>
+                                </div>
+                                <div class="mhs-item">
+                                    <span>⏰</span>
+                                    <span class="ecs-item-text">{{ $event->time }}</span>
+                                </div>
+                                <div class="mhs-item">
+                                    <span>🗓</span>
+                                    <span class="ecs-item-text">{{ $event->date }}</span>
+                                </div>
+                                @if($event->adress != null)
+                                    <div class="mhs-item mt-1">
+                                        <div class="ecs-item">
+                                            <a target="_blank" href="{{ $event->adress }}">Etkinliğe Katıl</a>
+                                        </div>
+                                    </div>
+                                @endif
+                                @isset(Auth::user()->id)
+                                    @if($event->created_user_id == Auth::user()->id)
+                                        <div class="mhs-item mt-1">
+                                            <div class="ecs-item">
+                                                <a href="{{ route('event.edit', $event->id) }}">Etkinliği düzenle</a>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div style="margin-top: 12px; width: 40%">
+                        <img src="/img/sticker_set-54.png" height="400px" style="max-height: 240px;">
+                    </div>
+                </div>
+
+            </div>
+
+            <p class="event-description">{{ $event->description }}</p>
         </div>
 
             @isset($get_question)
