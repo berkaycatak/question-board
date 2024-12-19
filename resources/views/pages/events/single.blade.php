@@ -11,12 +11,7 @@
                 <h5>✍🏻 SORU TAHTASI</h5>
                 <div style="display: flex">
                     <div class="event-details-header" style="display: flex; flex-direction: row; align-items: center; ; width: 60%">
-                        <div class="event-details-header-left">
-                            <div style="margin-top: 12px;">
-                                <img style="height: 120px; width: 120px;" src="/img/qrcode_sorutahtasi.com.png" width="100">
-                            </div>
-                        </div>
-                        <div class="event-details-header-right" style="margin-left: 16px; display: flex; flex-direction: column; justify-content: center;">
+                        <div class="event-details-header-right">
                             <h1 style="font-size: 30px; margin-top: 20px;">{{ $event->name }}</h1>
 
                             <div class="main-header-specs">
@@ -50,13 +45,12 @@
                                 @endif
                             </div>
                             <p  style="margin-top: 0px" class="event-description">{{ $event->description }}</p>
-
                         </div>
                     </div>
 
 
                     <div style="margin-top: 12px; width: 40%">
-                        <img src="/img/sticker_set-54.png" height="400px" style="max-height: 240px;">
+                        <img src="/img/sticker_set-54.png" height="400px" style="max-height: 240px;" class="hide-on-mobile">
                     </div>
                 </div>
 
