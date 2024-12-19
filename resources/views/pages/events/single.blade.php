@@ -162,7 +162,7 @@
                                     <div style="@if($question->gemini_answer == null) display:none; @endif" id="is-answer-gemini-{{ $question->id }}" class="vote mt-2">
                                         <span id="show-answer-gemini-{{ $question->id }}" style="display: block;" onclick="showGeminiAnswer({{ $question->id }}, this)">Google Gemini'ın cevabını gör:</span>
                                         <span style="display: none; opacity: .8; font-weight: 300; " id="answer-gemini-{{ $question->id }}">
-                                            {{ $question->gemini_answer }}
+                                            {!! $question->gemini_answer !!}
                                         </span>
                                     </div>
                                 </div>

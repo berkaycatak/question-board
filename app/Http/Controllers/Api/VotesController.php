@@ -64,7 +64,7 @@ class VotesController extends Controller
         if ($question == null)
             throw new \Exception("Bir hata meydana geldi");
 
-        $promt = 'Sen "Soru Tahtası" platformu için oluşturulmuş bir yapay zekasın. '. $question->event->name .' başlıklı etkinlik için gönderilmiş aşağıdaki soruya kısa bir şekilde cevap ver. "' . $question->question . '"';
+        $promt = 'Sen "Soru Tahtası" platformu için oluşturulmuş bir yapay zekasın. '. $question->event->name .' başlıklı etkinlik için gönderilmiş aşağıdaki soruya kısa bir şekilde cevap ver. Biçimlendirme için html etiketlerini kullan."' . $question->question . '"';
         $response = $this->generateAIContent($promt);
 
         $answer = $response['candidates'][0]['content']['parts'][0]['text'];
