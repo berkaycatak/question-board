@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Question;
 use App\Models\Vote;
+use Exception;
+use Google\Auth\Credentials\ServiceAccountCredentials;
 use Illuminate\Http\Request;
 use Auth;
+use Google\Client;
 
 class VotesController extends Controller
 {
@@ -66,7 +69,6 @@ class VotesController extends Controller
 
         $answer = $response['candidates'][0]['content']['parts'][0]['text'];
 
-
         $save = $question->gemini_answer = $answer;
         $save = $question->save();
 
@@ -84,16 +86,20 @@ class VotesController extends Controller
         }
     }
 
+
     function generateAIContent($prompt) {
-        $apiKey = env("GEMINI_API_KEY");
-        $url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" . $apiKey;
+
+        $accessToken = $this->getAccessToken(base_path("goren-duyan-ccc0cea88f34.json"));
+        $projectId = env("PROJECT_ID");  // PROJECT_ID'yi env dosyanızdan alırsınız.
+        $modelId = env("MODEL_ID");      // MODEL_ID'yi env dosyanızdan alırsınız.
+
+        $url = "https://us-central1-aiplatform.googleapis.com/v1/projects/{$projectId}/locations/us-central1/publishers/google/models/{$modelId}:generateContent";
 
         $data = [
             "contents" => [
-                [
-                    "parts" => [
-                        ["text" => $prompt]
-                    ]
+                "role" => "user",
+                "parts" => [
+                    ["text" => $prompt]
                 ]
             ]
         ];
@@ -103,7 +109,8 @@ class VotesController extends Controller
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            'Content-Type: application/json'
+            "Authorization: Bearer {$accessToken}",
+            "Content-Type: application/json"
         ]);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
 
@@ -115,8 +122,16 @@ class VotesController extends Controller
         }
 
         curl_close($ch);
-
         return json_decode($response, true);
+    }
+
+    public function  getAccessToken($serviceAccountPath) {
+        $client = new Client();
+        $client->setAuthConfig($serviceAccountPath);
+        $client->addScope('https://www.googleapis.com/auth/cloud-platform');
+        $client->useApplicationDefaultCredentials();
+        $token = $client->fetchAccessTokenWithAssertion();
+        return $token['access_token'];
     }
 
 }
