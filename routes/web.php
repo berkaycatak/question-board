@@ -29,5 +29,6 @@ Route::get('/events/{event_id}/edit/{question_id}', [QuestionsController::class,
 Route::get('/events/{event_id}/delete/{question_id}', [QuestionsController::class, 'delete'])->name('question_delete');
 
 Route::get('/api/vote', [VotesController::class, 'vote']);
+Route::get('/api/ask', [VotesController::class, 'ask']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

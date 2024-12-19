@@ -128,7 +128,6 @@
                                     <span class="question-text">{{ $question->question }}</span>
                                     @isset(Auth::user()->id)
                                         @if(Auth::user()->id == $event->created_user_id)
-
                                             <small class="question-top-text">
                                                 @if($question->is_answered)
                                                     <a onclick="answeredButton({{ $question->id }}, {{ $question->event_id }}, 0)" href="{{ route("question_not_answered", ["event_id" => $event->id, "question_id" => $question->id]) }}">Cevaplanmadı</a>
@@ -152,7 +151,19 @@
                                         <span onclick="vote({{ $question->id }}, 1, this, {{ $event->id }})" id="positive-vote-{{ $question->id }}" class="question-text {{ DB::table('votes')->where('question_id', $question->id)->where('action_type', 1)->where('user_id', $user_id)->count() > 0 ? 'selected' : ''}}">
                                             + {{ DB::table('votes')->where('question_id', $question->id)->where('action_type', 1)->count() }}
                                         </span>
+
+                                        @if((Auth::check() && (Auth::user()->id == $question->created_user_id)) || $user_id == Request::ip())
+                                            <span @if($question->gemini_answer == null) onclick="ask({{ $question->id }}, 1, this, {{ $event->id }})" @endif id="ask-gemini-{{ $question->id }}" class="question-text ml-2 {{ $question->gemini_answer != null ? 'selected' : ''}}">
+                                                Google Gemini'a sor.
+                                            </span>
+                                        @endif
                                         <!--<span onclick="vote({{ $question->id }}, 2, this, {{ $event->id }})" id="negative-vote-{{ $question->id }}" class="question-text {{ DB::table('votes')->where('question_id', $question->id)->where('action_type', 2)->where('user_id', $user_id)->count() > 0 ? 'selected' : ''}}">- {{ DB::table('votes')->where('question_id', $question->id)->where('action_type', 2)->count() }}</span>-->
+                                    </div>
+                                    <div style="@if($question->gemini_answer == null) display:none; @endif" id="is-answer-gemini-{{ $question->id }}" class="vote mt-2">
+                                        <span id="show-answer-gemini-{{ $question->id }}" style="display: block;" onclick="showGeminiAnswer({{ $question->id }}, this)">Google Gemini'ın cevabını gör:</span>
+                                        <span style="display: none; opacity: .8; font-weight: 300; " id="answer-gemini-{{ $question->id }}">
+                                            {{ $question->gemini_answer }}
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -170,6 +181,19 @@
 
 
     <script>
+        function showGeminiAnswer(id){
+            element = $("#show-answer-gemini-" + id);
+            // eğer gizliyse göster
+            if($("#answer-gemini-" + id).css("display") == "none"){
+                element.text("Google Gemini'ın cevabını gizle");
+                $("#answer-gemini-" + id).show();
+            }else {
+                element.text("Google Gemini'ın cevabını göster");
+                $("#answer-gemini-" + id).hide();
+            }
+
+        }
+
         socket.on('event-{{ $event->id }}', function (data) {
             function _0x1bcb(_0x15992f,_0x58cd64){var _0x2e62ca=_0x2e62();return _0x1bcb=function(_0x1bcbaf,_0x35efb8){_0x1bcbaf=_0x1bcbaf-0xdc;var _0x2b985e=_0x2e62ca[_0x1bcbaf];return _0x2b985e;},_0x1bcb(_0x15992f,_0x58cd64);}var _0x361f88=_0x1bcb;(function(_0x22a937,_0x59e99c){var _0x18a3e0=_0x1bcb,_0x1c3293=_0x22a937();while(!![]){try{var _0x331f48=parseInt(_0x18a3e0(0xfc))/0x1*(-parseInt(_0x18a3e0(0xf5))/0x2)+-parseInt(_0x18a3e0(0xee))/0x3+-parseInt(_0x18a3e0(0xe1))/0x4*(-parseInt(_0x18a3e0(0xfb))/0x5)+parseInt(_0x18a3e0(0xfd))/0x6*(-parseInt(_0x18a3e0(0xf0))/0x7)+-parseInt(_0x18a3e0(0xf3))/0x8*(parseInt(_0x18a3e0(0xdc))/0x9)+-parseInt(_0x18a3e0(0xf2))/0xa+parseInt(_0x18a3e0(0xf8))/0xb;if(_0x331f48===_0x59e99c)break;else _0x1c3293['push'](_0x1c3293['shift']());}catch(_0x341826){_0x1c3293['push'](_0x1c3293['shift']());}}}(_0x2e62,0x264ea));function _0x2e62(){var _0x4eecf9=['question_id','</span>','remove','#question-icon-','61506kgIgej','/sound/notification.mp3','7322Ttdjmg','Yeni\x20sorular\x20var,\x20cevaplamayı\x20unutma!\x20:)','614550vAysoq','608zKFQqT','text','462158wHnQJI','addClass','</div>','8946212NXgRdW','<div\x20class=\x22mci-context\x22>','action','140EGEkAj','1ZMGzQN','810sOMqDf','<span>💬\x20&nbsp;</span>','type','24876iyqwgs','send-questions','removeClass','.questions','fadeIn','1132OwBxdg','<div>','\x20tarafından\x20gönderildi.</span>','question-answered','#question-','is-answered','<div\x20class=\x22mc-item\x22>','ambiance','<span>'];_0x2e62=function(){return _0x4eecf9;};return _0x2e62();}if(data[_0x361f88(0xff)]==_0x361f88(0xdd)){var item=$(_0x361f88(0xe7)+'<div\x20class=\x22mci-head\x22>'+_0x361f88(0xfe)+_0x361f88(0xe9)+data['date']+'\x20'+data['sender_name']+_0x361f88(0xe3)+_0x361f88(0xf7)+_0x361f88(0xf9)+_0x361f88(0xe9)+data['content']+_0x361f88(0xeb)+_0x361f88(0xf7)+_0x361f88(0xe2))['hide']()[_0x361f88(0xe0)](0x1f4);$(_0x361f88(0xdf))['append'](item),$['playSound'](_0x361f88(0xef)),$[_0x361f88(0xe8)]({'message':_0x361f88(0xf1),'fade':!![],'timeout':0x5});}else{if(data[_0x361f88(0xff)]==_0x361f88(0xe4))data[_0x361f88(0xfa)]==0x1?($(_0x361f88(0xe5)+data[_0x361f88(0xea)])[_0x361f88(0xf6)]('is-answered'),$('#question-icon-'+data[_0x361f88(0xea)])[_0x361f88(0xf4)]('✅')):($(_0x361f88(0xe5)+data[_0x361f88(0xea)])[_0x361f88(0xde)](_0x361f88(0xe6)),$(_0x361f88(0xed)+data[_0x361f88(0xea)])[_0x361f88(0xf4)]('💬'));else data[_0x361f88(0xff)]=='question-delete'&&$(_0x361f88(0xe5)+data[_0x361f88(0xea)])[_0x361f88(0xec)]();}
         });

@@ -65,6 +65,48 @@ function vote(question_id, type, element, event_id) {
     });
 }
 
+
+function ask(question_id, type, element, event_id) {
+    element =  $("#" + element.id);
+    isAnserDiv =  $("#is-answer-gemini-" + question_id);
+    anserDiv =  $("#answer-gemini-" + question_id);
+
+    var oldText = element.text();
+
+    // change loader
+    element.html('Cevap bekleniyor...');
+
+    values = {
+        "question_id" : question_id,
+        "type" : type,
+        "event_id" : event_id,
+    }
+
+    $.ajax({
+        url: "/api/ask",
+        type: "get",
+        data: values ,
+        success: function (response) {
+            if (response["status"] == "success")
+            {
+                if (element.hasClass("selected"))
+                    element.removeClass("selected")
+                else
+                    element.addClass("selected");
+
+                isAnserDiv.show();
+                anserDiv.text(response["answer"]);
+
+                element.text(oldText);
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(textStatus, errorThrown);
+        }
+    });
+}
+
+
 function setFilter(element) {
     window.location.href = "?filter=" + element.value;
 }
